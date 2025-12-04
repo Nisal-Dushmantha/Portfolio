@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowDown, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaBars, FaTimes, FaDownload, FaExternalLinkAlt, FaSpinner, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { useContactForm } from '../hooks/useContactForm';
-import { useActiveSection } from '../hooks/useActiveSection';
+import { FaArrowDown, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaBars, FaTimes, FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { formData, isLoading, status, handleChange, handleSubmit } = useContactForm();
-  const activeSection = useActiveSection();
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -55,39 +51,33 @@ const Home = () => {
         <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
           <button 
             onClick={() => scrollToSection('hero')}
-            className={`transition-colors font-medium text-sm ${
-              activeSection === 'hero' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
           >
             Home
           </button>
           <button 
+            onClick={() => scrollToSection('about')}
+            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
+          >
+            About
+          </button>
+          <button 
             onClick={() => scrollToSection('projects')}
-            className={`transition-colors font-medium text-sm ${
-              activeSection === 'projects' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
           >
             Projects
           </button>
           <button 
             onClick={() => scrollToSection('contact')}
-            className={`transition-colors font-medium text-sm ${
-              activeSection === 'contact' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
           >
             Contact
           </button>
           <Link 
-            to="/profile"
-            className="text-white bg-red-700 px-4 py-2 rounded-full font-medium text-sm"
+            to="/profile" 
+            className="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors font-medium text-sm"
           >
-            About
+            Resume
           </Link>
         </div>
 
@@ -105,43 +95,31 @@ const Home = () => {
             <div className="space-y-3">
               <button 
                 onClick={() => scrollToSection('hero')}
-                className={`block w-full text-left transition-colors font-medium py-2 ${
-                  activeSection === 'hero' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className="block w-full text-left text-gray-600 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Home
               </button>
-              <Link 
-                to="/profile"
-                className="block w-full text-left text-gray-600 hover:text-gray-900 font-medium py-2"
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="block w-full text-left text-gray-600 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 About
-              </Link>
+              </button>
               <button 
                 onClick={() => scrollToSection('projects')}
-                className={`block w-full text-left transition-colors font-medium py-2 ${
-                  activeSection === 'projects' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className="block w-full text-left text-gray-600 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Projects
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className={`block w-full text-left transition-colors font-medium py-2 ${
-                  activeSection === 'contact' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className="block w-full text-left text-gray-600 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Contact
               </button>
               <Link 
                 to="/profile" 
-                className="block bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 font-medium text-center text-sm"
+                className="block bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors font-medium text-center text-sm"
               >
                 Resume
               </Link>
@@ -158,7 +136,7 @@ const Home = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <p className="text-lg text-gray-600 font-medium">Hello, I'm</p>
-                <h1 className="text-5xl lg:text-6xl font-bold text-red-700 leading-tight">
+                <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   Nisal Dushmantha
                 </h1>
                 <h2 className="text-2xl lg:text-3xl text-gray-700 font-light">
@@ -180,8 +158,8 @@ const Home = () => {
                   View Projects
                 </button>
                 <a 
-                  href="/assets/documents/P.G.N.L.Dushmantha CV.pdf"
-                  download="Nisal_Dushmantha_CV.pdf"
+                  href="/assets/resume/nisal-resume.pdf"
+                  download
                   className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium flex items-center justify-center gap-2"
                 >
                   <FaDownload className="text-sm" />
@@ -212,7 +190,7 @@ const Home = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">10+</div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">25+</div>
               <div className="text-gray-600 text-sm">Projects Completed</div>
             </div>
             <div className="text-center">
@@ -453,85 +431,37 @@ const Home = () => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Status Message */}
-              {status.message && (
-                <div className={`p-4 rounded-2xl flex items-center gap-3 ${
-                  status.type === 'success' 
-                    ? 'bg-green-50 text-green-800 border border-green-200' 
-                    : 'bg-red-50 text-red-800 border border-red-200'
-                }`}>
-                  {status.type === 'success' ? (
-                    <FaCheckCircle className="text-green-600" />
-                  ) : (
-                    <FaExclamationCircle className="text-red-600" />
-                  )}
-                  <span className="text-sm font-medium">{status.message}</span>
-                </div>
-              )}
-
+            <form className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Name <span className="text-red-500">*</span>
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
-                  placeholder="Your full name"
-                  required
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors"
+                  placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email <span className="text-red-500">*</span>
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors"
                   placeholder="your.email@example.com"
-                  required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Message <span className="text-red-500">*</span>
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                 <textarea
-                  name="message"
                   rows="6"
-                  value={formData.message}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
-                  placeholder="Tell me about your project, ideas, or how I can help you..."
-                  required
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none"
+                  placeholder="Tell me about your project..."
                 ></textarea>
               </div>
               <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full bg-red-700 text-white py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                className="w-full bg-red-700 text-white py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium"
               >
-                {isLoading ? (
-                  <>
-                    <FaSpinner className="animate-spin" />
-                    Sending Message...
-                  </>
-                ) : (
-                  'Send Message'
-                )}
+                Send Message
               </button>
-              <p className="text-xs text-gray-500 text-center">
-                Your information is secure and will only be used to respond to your inquiry.
-              </p>
             </form>
           </div>
         </div>

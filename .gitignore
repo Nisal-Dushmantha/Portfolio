@@ -1,0 +1,90 @@
+# Root .gitignore for Portfolio Project
+
+# Environment variables (CRITICAL - Contains EmailJS credentials and API keys)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build outputs
+build/
+dist/
+*/build/
+*/dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache directories
+.cache/
+.parcel-cache/
+
+# Backup files
+*.backup
+*.bak
+
+# Portfolio specific files to ignore
+# Personal documents (if you accidentally put them in the repo)
+*.pdf
+*.doc
+*.docx
+
+# Any local configuration
+config.local.*
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Windows
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
