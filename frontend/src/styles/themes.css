@@ -1,0 +1,235 @@
+/* Color Theme Configuration */
+
+:root {
+  /* Light Theme Colors */
+  --primary-bg: #ffffff;
+  --secondary-bg: #f9fafb;
+  --accent-bg: #f3f4f6;
+  
+  --primary-text: #111827;
+  --secondary-text: #374151;
+  --muted-text: #6b7280;
+  --light-text: #9ca3af;
+  
+  --primary-red: #af0000;
+  --secondary-red: #8b0000;
+  --light-red: #fef2f2;
+  --accent-red: #dc2626;
+  
+  --accent-orange: #ea580c;
+  --accent-green: #16a34a;
+  
+  --border-light: #f3f4f6;
+  --border-medium: #e5e7eb;
+  --border-dark: #d1d5db;
+  
+  --shadow-light: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-large: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --primary-bg: #111827;
+  --secondary-bg: #1f2937;
+  --accent-bg: #374151;
+  
+  --primary-text: #f9fafb;
+  --secondary-text: #e5e7eb;
+  --muted-text: #9ca3af;
+  --light-text: #6b7280;
+  
+  --primary-red: #dc2626;
+  --secondary-red: #af0000;
+  --light-red: #1f2937;
+  --accent-red: #ef4444;
+  
+  --accent-orange: #f97316;
+  --accent-green: #22c55e;
+  
+  --border-light: #374151;
+  --border-medium: #4b5563;
+  --border-dark: #6b7280;
+  
+  --shadow-light: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  --shadow-large: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+}
+
+/* Utility Classes for Theme-aware Components */
+.theme-bg-primary {
+  background-color: var(--primary-bg);
+}
+
+.theme-bg-secondary {
+  background-color: var(--secondary-bg);
+}
+
+.theme-bg-accent {
+  background-color: var(--accent-bg);
+}
+
+.theme-text-primary {
+  color: var(--primary-text);
+}
+
+.theme-text-secondary {
+  color: var(--secondary-text);
+}
+
+.theme-text-muted {
+  color: var(--muted-text);
+}
+
+.theme-text-light {
+  color: var(--light-text);
+}
+
+.theme-red-primary {
+  color: var(--primary-red);
+}
+
+.theme-red-bg {
+  background-color: var(--primary-red);
+}
+
+.theme-red-light-bg {
+  background-color: var(--light-red);
+}
+
+.theme-border-light {
+  border-color: var(--border-light);
+}
+
+.theme-border-medium {
+  border-color: var(--border-medium);
+}
+
+.theme-border-dark {
+  border-color: var(--border-dark);
+}
+
+.theme-shadow-light {
+  box-shadow: var(--shadow-light);
+}
+
+.theme-shadow-medium {
+  box-shadow: var(--shadow-medium);
+}
+
+.theme-shadow-large {
+  box-shadow: var(--shadow-large);
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--primary-red);
+  color: var(--primary-bg);
+  border: 2px solid var(--primary-red);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-red);
+  border-color: var(--secondary-red);
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-red);
+  border: 2px solid var(--primary-red);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-red);
+  color: var(--primary-bg);
+  transform: scale(1.05);
+}
+
+/* Card Variants */
+.card-primary {
+  background-color: var(--primary-bg);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+.card-primary:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.card-secondary {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+.card-secondary:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Navigation Variants */
+.nav-link {
+  color: var(--muted-text);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-red);
+}
+
+.nav-brand {
+  color: var(--primary-text);
+}
+
+.nav-brand .accent {
+  color: var(--primary-red);
+}
+
+/* Social Icons */
+.social-icon {
+  background-color: var(--secondary-bg);
+  color: var(--muted-text);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+.social-icon.github:hover {
+  background-color: #333;
+  color: white;
+}
+
+.social-icon.linkedin:hover {
+  background-color: var(--primary-red);
+  color: white;
+}
+
+.social-icon.instagram:hover {
+  background-color: var(--accent-orange);
+  color: white;
+}
+
+.social-icon.email:hover {
+  background-color: var(--accent-green);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+  
+  [data-theme="dark"] {
+    --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+  }
+}
