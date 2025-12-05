@@ -16,28 +16,12 @@ const Home = () => {
 
   const projects = [
     {
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React and Tailwind CSS. Features clean design and smooth animations.",
-      tech: ["React", "Tailwind CSS", "Vite"],
+      id: 1,
+      title: "Motor Bikes and Spare parts Management System",
+      description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
+      tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
       image: "/assets/images/nisal-profile.jpg",
-      link: "#",
-      github: "https://github.com/Nisal-Dushmantha"
-    },
-    {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce application with user authentication, product management, and payment integration.",
-      tech: ["MERN", "Node.js", "MongoDB", "Express"],
-      image: "/assets/images/nisal-profile.jpg",
-      link: "#",
-      github: "https://github.com/Nisal-Dushmantha"
-    },
-    {
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates and team collaboration features.",
-      tech: ["React", "Firebase", "Material-UI"],
-      image: "/assets/images/nisal-profile.jpg",
-      link: "#",
-      github: "https://github.com/Nisal-Dushmantha"
+      github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git"
     }
   ];
 
@@ -45,8 +29,12 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
-        <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer">
-          ND
+        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-100">
+          <img 
+            src="/assets/images/nd-logo.png" 
+            alt="ND Logo" 
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
@@ -113,12 +101,6 @@ const Home = () => {
               >
                 Home
               </button>
-              <Link 
-                to="/profile"
-                className="block w-full text-left text-gray-600 hover:text-gray-900 font-medium py-2"
-              >
-                About
-              </Link>
               <button 
                 onClick={() => scrollToSection('projects')}
                 className={`block w-full text-left transition-colors font-medium py-2 ${
@@ -141,9 +123,10 @@ const Home = () => {
               </button>
               <Link 
                 to="/profile" 
-                className="block bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 font-medium text-center text-sm"
+                className="block text-white bg-red-700 px-4 py-2 rounded-full font-medium text-center text-sm"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Resume
+                About
               </Link>
             </div>
           </div>
@@ -323,15 +306,12 @@ const Home = () => {
                     ))}
                   </div>
                   <div className="flex items-center gap-3">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to={`/project/${project.id}`}
                       className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm"
                     >
-                      <FaExternalLinkAlt />
-                      Live Demo
-                    </a>
+                      Read More
+                    </Link>
                     <a
                       href={project.github}
                       target="_blank"
@@ -416,7 +396,7 @@ const Home = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">Location</p>
-                      <p className="text-gray-600">Sri Lanka</p>
+                      <p className="text-gray-600">Kaduwela, Sri Lanka</p>
                     </div>
                   </div>
                 </div>
@@ -543,8 +523,12 @@ const Home = () => {
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-1">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-900 font-bold text-lg mb-4">
-                ND
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden border border-gray-100">
+                <img 
+                  src="/assets/images/nd-logo.png" 
+                  alt="ND Logo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h3 className="text-xl font-bold mb-2">Nisal Dushmantha</h3>
               <p className="text-gray-400 text-sm">
@@ -585,12 +569,6 @@ const Home = () => {
                 >
                   Projects
                 </button>
-                <Link 
-                  to="/profile"
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  Resume
-                </Link>
                 <button 
                   onClick={() => scrollToSection('contact')}
                   className="block text-gray-400 hover:text-white transition-colors text-sm"
@@ -622,7 +600,7 @@ const Home = () => {
                 >
                   lawanyanisal@gmail.com
                 </a>
-                <p className="text-gray-400">Sri Lanka</p>
+                <p className="text-gray-400">Kaduwela, Sri Lanka</p>
                 <div className="flex gap-3 mt-4">
                   <a
                     href="https://github.com/Nisal-Dushmantha"

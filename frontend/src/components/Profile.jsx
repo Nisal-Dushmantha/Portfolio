@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaInstagram, FaGlobe, FaDownload, FaArrowLeft, FaBirthdayCake, FaBars, FaTimes } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaGlobe, FaDownload, FaArrowLeft, FaBirthdayCake, FaBars, FaTimes } from 'react-icons/fa';
 import ContactFormModal from './ContactFormModal';
 
 const Profile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   const [profile] = useState({
     name: "Nisal Lawanya Dushmantha",
@@ -88,7 +88,6 @@ const Profile = () => {
               >
                 Home
               </Link>
-              <span className="block text-red-700 font-medium py-2">About</span>
               <Link 
                 to="/#projects"
                 onClick={(e) => {
@@ -111,9 +110,7 @@ const Profile = () => {
               >
                 Contact
               </Link>
-              <span className="block bg-gray-900 text-white px-4 py-2 rounded-full font-medium text-center text-sm">
-                Resume
-              </span>
+              <span className="block text-white bg-red-700 px-4 py-2 rounded-full font-medium text-center text-sm">About</span>
             </div>
           </div>
         )}
@@ -174,7 +171,7 @@ const Profile = () => {
                 Download Resume
               </a>
               <button 
-                onClick={() => setIsContactModalOpen(true)}
+                onClick={() => setContactModalOpen(true)}
                 className="border-2 border-red-700 text-red-700 px-8 py-4 rounded-full font-medium hover:bg-red-700 hover:text-white transition-all duration-300 hover:transform hover:scale-105 flex items-center gap-3"
               >
                 <FaEnvelope />
@@ -286,6 +283,23 @@ const Profile = () => {
                     </a>
                   )}
                   
+                  {profile.socialLinks?.twitter && (
+                    <a 
+                      href={profile.socialLinks.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                    >
+                      <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                        <FaTwitter className="text-red-400 text-xl" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">Twitter</p>
+                        <p className="text-sm text-gray-500">Latest updates</p>
+                      </div>
+                    </a>
+                  )}
+                  
                   {profile.socialLinks?.instagram && (
                     <a 
                       href={profile.socialLinks.instagram}
@@ -328,8 +342,8 @@ const Profile = () => {
 
       {/* Contact Form Modal */}
       <ContactFormModal 
-        isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
+        isOpen={contactModalOpen} 
+        onClose={() => setContactModalOpen(false)} 
       />
     </div>
   );
