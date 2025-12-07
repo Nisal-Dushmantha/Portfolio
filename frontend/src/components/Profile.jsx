@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaGlobe, FaDownload, FaArrowLeft, FaBirthdayCake, FaBars, FaTimes } from 'react-icons/fa';
 import ContactFormModal from './ContactFormModal';
+import PageTransition from './PageTransition';
 
 const Profile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+
+  // Load page at top position when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
 
   const [profile] = useState({
     name: "Nisal Lawanya Dushmantha",
@@ -27,7 +33,8 @@ const Profile = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white">
+    <PageTransition>
+      <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
@@ -346,6 +353,7 @@ const Profile = () => {
         onClose={() => setContactModalOpen(false)} 
       />
     </div>
+    </PageTransition>
   );
 };
 

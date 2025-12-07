@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase, FaJs, FaPython, FaHtml5, FaCss3, FaMobile, FaLaptop, FaBars, FaTimes } from 'react-icons/fa';
-import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript } from 'react-icons/si';
+import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase, FaJs, FaPython, FaHtml5, FaCss3, FaMobile, FaLaptop, FaBars, FaTimes, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
+import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
+import PageTransition from './PageTransition';
 
 const AllProjects = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
+
+  // Load page at top position when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
 
   // Expanded projects data
   const allProjects = [
@@ -15,19 +21,38 @@ const AllProjects = () => {
       title: "Motor Bikes and Spare parts Management System",
       description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
       tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/nisal-profile.jpg",
+      image: "/assets/images/rathnasiri-motors-dashboard.png",
       github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git",
-      category: "fullstack",
+      category: "web-development",
       featured: true
+    },
+    {
+      id: 2,
+      title: "BrewMe - UI/UX Design Project",
+      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
+      tech: ["Figma", "UI/UX Design"],
+      image: "/assets/images/brewme-screenshot.png",
+      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
+      category: "ui-ux",
+      featured: true
+    },
+    {
+      id: 3,
+      title: "Brew Now - Android UI/UX Design",
+      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
+      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
+      image: "/assets/images/brew-now-android-studio.png",
+      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git",
+      category: "android",
+      featured: false
     }
   ];
 
   const categories = [
     { key: 'all', label: 'All Projects' },
-    { key: 'frontend', label: 'Frontend' },
-    { key: 'backend', label: 'Backend' },
-    { key: 'fullstack', label: 'Full Stack' },
-    { key: 'mobile', label: 'Mobile' }
+    { key: 'web-development', label: 'Web Development' },
+    { key: 'ui-ux', label: 'UI/UX' },
+    { key: 'android', label: 'Android' }
   ];
 
   const getTechIcon = (tech) => {
@@ -44,6 +69,15 @@ const AllProjects = () => {
       case 'typescript': return <SiTypescript className="text-blue-600" />;
       case 'html5': return <FaHtml5 className="text-orange-600" />;
       case 'css3': return <FaCss3 className="text-blue-600" />;
+      case 'figma': return <SiFigma className="text-purple-600" />;
+      case 'ui/ux design': return <FaPaintBrush className="text-pink-500" />;
+      case 'ui/ux': return <FaPaintBrush className="text-pink-500" />;
+      case 'android': return <SiAndroid className="text-green-500" />;
+      case 'android studio': return <SiAndroid className="text-green-600" />;
+      case 'kotlin': return <SiKotlin className="text-purple-700" />;
+      case 'google maps api': return <FaGoogle className="text-blue-600" />;
+      case 'material design': return <SiMaterialdesign className="text-blue-500" />;
+      case 'xml layouts': return <FaAndroid className="text-green-700" />;
       default: return <FaJs className="text-yellow-500" />;
     }
   };
@@ -53,7 +87,8 @@ const AllProjects = () => {
     : allProjects.filter(project => project.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-white">
+    <PageTransition>
+      <div className="min-h-screen bg-white">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
         <Link to="/" className="block">
@@ -173,7 +208,7 @@ const AllProjects = () => {
             {filteredProjects.map((project) => (
               <div 
                 key={project.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100"
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100 flex flex-col"
               >
                 <div className="relative overflow-hidden">
                   <img 
@@ -188,11 +223,11 @@ const AllProjects = () => {
                   )}
                 </div>
                 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   
@@ -205,7 +240,7 @@ const AllProjects = () => {
                     ))}
                   </div>
                   
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <Link 
                       to={`/project/${project.id}`}
                       className="flex-1 bg-gray-900 text-white text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
@@ -333,6 +368,7 @@ const AllProjects = () => {
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 

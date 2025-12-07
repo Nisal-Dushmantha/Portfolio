@@ -1,17 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowDown, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaBars, FaTimes, FaDownload, FaExternalLinkAlt, FaSpinner, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaArrowDown, FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaBars, FaTimes, FaDownload, FaExternalLinkAlt, FaSpinner, FaCheckCircle, FaExclamationCircle, FaReact, FaNodeJs, FaHtml5, FaCss3, FaJs, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
+import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
 import { useContactForm } from '../hooks/useContactForm';
 import { useActiveSection } from '../hooks/useActiveSection';
+import PageTransition from './PageTransition';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { formData, isLoading, status, handleChange, handleSubmit } = useContactForm();
   const activeSection = useActiveSection();
 
+  // Load page at top position when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     setMobileMenuOpen(false);
+  };
+
+  const getTechIcon = (tech) => {
+    switch (tech.toLowerCase()) {
+      case 'react': return <FaReact className="text-blue-500" />;
+      case 'node.js': return <FaNodeJs className="text-green-500" />;
+      case 'mongodb': return <SiMongodb className="text-green-600" />;
+      case 'express': return <SiExpress className="text-gray-600" />;
+      case 'tailwind css': return <SiTailwindcss className="text-cyan-500" />;
+      case 'firebase': return <SiFirebase className="text-orange-500" />;
+      case 'vite': return <SiVite className="text-purple-500" />;
+      case 'python': return <SiPython className="text-blue-600" />;
+      case 'javascript': return <SiJavascript className="text-yellow-500" />;
+      case 'typescript': return <SiTypescript className="text-blue-600" />;
+      case 'html5': return <FaHtml5 className="text-orange-600" />;
+      case 'css3': return <FaCss3 className="text-blue-600" />;
+      case 'mern': return <FaReact className="text-blue-500" />;
+      case 'figma': return <SiFigma className="text-purple-600" />;
+      case 'ui/ux design': return <FaPaintBrush className="text-pink-500" />;
+      case 'ui/ux': return <FaPaintBrush className="text-pink-500" />;
+      case 'android': return <SiAndroid className="text-green-500" />;
+      case 'android studio': return <SiAndroid className="text-green-600" />;
+      case 'kotlin': return <SiKotlin className="text-purple-700" />;
+      case 'google maps api': return <FaGoogle className="text-blue-600" />;
+      case 'material design': return <SiMaterialdesign className="text-blue-500" />;
+      case 'xml layouts': return <FaAndroid className="text-green-700" />;
+      default: return <FaJs className="text-yellow-500" />;
+    }
   };
 
   const projects = [
@@ -20,13 +55,30 @@ const Home = () => {
       title: "Motor Bikes and Spare parts Management System",
       description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
       tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/nisal-profile.jpg",
+      image: "/assets/images/rathnasiri-motors-dashboard.png",
       github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git"
+    },
+    {
+      id: 2,
+      title: "BrewMe - UI/UX Design Project",
+      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
+      tech: ["Figma", "UI/UX Design"],
+      image: "/assets/images/brewme-screenshot.png",
+      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
+    },
+    {
+      id: 3,
+      title: "Brew Now - Android UI/UX Design",
+      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
+      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
+      image: "/assets/images/brew-now-android-studio.png",
+      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <PageTransition>
+      <div className="min-h-screen bg-white">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-100">
@@ -274,7 +326,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A showcase of my latest work in web development, UI/UX design, and full-stack applications.
+              A showcase of my latest work in web development, UI/UX design, and android applications.
             </p>
           </div>
 
@@ -282,7 +334,7 @@ const Home = () => {
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group bg-gray-50 border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                className="group bg-gray-50 border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -292,23 +344,24 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{project.description}</p>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech, techIndex) => (
-                      <span 
+                      <div 
                         key={techIndex}
-                        className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full"
+                        className="flex items-center gap-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full px-3 py-1"
                       >
-                        {tech}
-                      </span>
+                        {getTechIcon(tech)}
+                        <span>{tech}</span>
+                      </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <Link
                       to={`/project/${project.id}`}
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm"
+                      className="flex-1 bg-gray-900 text-white text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
                     >
                       Read More
                     </Link>
@@ -316,7 +369,7 @@ const Home = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm"
+                      className="flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-3 rounded-xl hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium text-sm"
                     >
                       <FaGithub />
                       GitHub
@@ -642,6 +695,7 @@ const Home = () => {
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 

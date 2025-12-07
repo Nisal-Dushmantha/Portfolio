@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaGithub, FaArrowLeft, FaBars, FaTimes, FaSpinner, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaGithub, FaArrowLeft, FaBars, FaTimes, FaSpinner, FaCheckCircle, FaExclamationCircle, FaReact, FaNodeJs, FaHtml5, FaCss3, FaJs, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
+import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
 import { useContactForm } from '../hooks/useContactForm';
+import PageTransition from './PageTransition';
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { formData, isLoading, status, handleChange, handleSubmit } = useContactForm();
+
+  // Load page at top position when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
+  const getTechIcon = (tech) => {
+    switch (tech.toLowerCase()) {
+      case 'react': return <FaReact className="text-blue-500" />;
+      case 'node.js': return <FaNodeJs className="text-green-500" />;
+      case 'mongodb': return <SiMongodb className="text-green-600" />;
+      case 'express': return <SiExpress className="text-gray-600" />;
+      case 'tailwind css': return <SiTailwindcss className="text-cyan-500" />;
+      case 'firebase': return <SiFirebase className="text-orange-500" />;
+      case 'vite': return <SiVite className="text-purple-500" />;
+      case 'python': return <SiPython className="text-blue-600" />;
+      case 'javascript': return <SiJavascript className="text-yellow-500" />;
+      case 'typescript': return <SiTypescript className="text-blue-600" />;
+      case 'html5': return <FaHtml5 className="text-orange-600" />;
+      case 'css3': return <FaCss3 className="text-blue-600" />;
+      case 'mern': return <FaReact className="text-blue-500" />;
+      case 'figma': return <SiFigma className="text-purple-600" />;
+      case 'ui/ux design': return <FaPaintBrush className="text-pink-500" />;
+      case 'ui/ux': return <FaPaintBrush className="text-pink-500" />;
+      case 'android': return <SiAndroid className="text-green-500" />;
+      case 'android studio': return <SiAndroid className="text-green-600" />;
+      case 'kotlin': return <SiKotlin className="text-purple-700" />;
+      case 'google maps api': return <FaGoogle className="text-blue-600" />;
+      case 'material design': return <SiMaterialdesign className="text-blue-500" />;
+      case 'xml layouts': return <FaAndroid className="text-green-700" />;
+      default: return <FaJs className="text-yellow-500" />;
+    }
+  };
 
   // Project data - this would normally come from a database or API
   const projects = {
@@ -27,11 +62,96 @@ Key Features:
 
 The application follows modern development practices with a clean, intuitive interface that makes it easy for staff to manage daily operations efficiently. Built with scalability in mind, it can handle growing business needs while maintaining optimal performance.`,
       tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/nisal-profile.jpg",
-      videoUrl: "", // Will be added later
+      image: "/assets/images/rathnasiri-motors-dashboard.png",
+      videoUrl: "/assets/videos/rathnasiri-motors-demo.mp4", // Video added
       github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git",
       category: "fullstack",
       featured: true
+    },
+    2: {
+      id: 2,
+      title: "BrewMe - UI/UX Design Project",
+      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
+      detailedDescription: `BrewMe is a comprehensive mobile application design project focused on revolutionizing the coffee ordering experience. This UI/UX design project addresses the pain points of traditional coffee ordering systems by creating an intuitive, efficient, and delightful user experience for both customers and baristas.
+
+Design Objectives:
+• Create an intuitive and user-friendly ordering interface
+• Streamline the coffee ordering and pickup process
+• Enhance customer engagement through personalized experiences
+• Optimize workflow efficiency for baristas and cafe staff
+• Implement modern design principles and accessibility standards
+
+Key Features Designed:
+• Personalized user profiles with order history and preferences
+• Real-time menu browsing with detailed coffee descriptions
+• Customizable order options (size, milk type, sweetness, etc.)
+• Location-based cafe finder with real-time availability
+• Order tracking with estimated preparation times
+• Integrated payment systems for seamless transactions
+• Loyalty program with rewards and special offers
+
+Design Process:
+The project followed a comprehensive design thinking approach, starting with user research and persona development, followed by wireframing, prototyping, and user testing. The design incorporates modern UI trends while maintaining usability and accessibility at its core.
+
+Tools & Methodologies:
+• User research and persona development
+• Wireframing and information architecture
+• High-fidelity prototyping and interaction design
+• Usability testing and iterative design improvements
+• Design system creation for consistency
+• Responsive design principles for various device sizes`,
+      tech: ["Figma", "UI/UX Design"],
+      image: "/assets/images/brewme-screenshot.png",
+      videoUrl: "/assets/videos/brewme-demo.mp4", // BrewMe demo video
+      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
+      figmaUrl: "https://www.figma.com/design/9emv7UHBV2lgsTID4k7aAQ/Untitled?node-id=0-1&t=jr3mvaLoJ5ihslPz-1", // Figma prototype link
+      category: "ui-ux",
+      featured: true
+    },
+    3: {
+      id: 3,
+      title: "Brew Now - Android UI/UX Design",
+      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
+      detailedDescription: `Brew Now is an Android mobile application UI/UX design project that showcases modern mobile interface design for a coffee ordering platform. Created using Android Studio and Kotlin, this project demonstrates front-end mobile development skills and user interface design principles without backend implementation.
+
+Design Objectives:
+• Create an intuitive and modern Android coffee ordering interface
+• Implement Material Design principles for consistent user experience
+• Develop responsive layouts for various Android screen sizes
+• Showcase advanced Android UI components and navigation patterns
+• Demonstrate proficiency in Android Studio and Kotlin development
+
+UI Features Designed:
+• Welcome and Onboarding screens with smooth transitions
+• User registration and login interface mockups
+• Coffee menu browsing with grid and list view options
+• Product detail screens with customization options
+• Shopping cart and checkout interface designs
+• User profile and settings screens
+• Order history and favorites interface
+• Modern navigation drawer and bottom navigation
+• Search functionality with filter options
+• Responsive design for tablets and phones
+
+Technical Implementation:
+• Kotlin programming language for Android development
+• Android Studio IDE for project development and layout design
+• XML layouts for responsive UI design
+• Material Design components and theming
+• RecyclerView for efficient list implementations
+• Fragment-based navigation architecture
+• Custom drawable resources and vector graphics
+• ViewBinding for type-safe view references
+• ConstraintLayout for flexible responsive designs
+
+Development Approach:
+This project focuses on the front-end user experience and interface design aspects of Android development. The emphasis was on creating visually appealing, user-friendly interfaces while learning Android development fundamentals, UI/UX design principles, and modern mobile design patterns. The project serves as a demonstration of mobile UI design capabilities and Android development skills.`,
+      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
+      image: "/assets/images/brew-now-android-studio.png",
+      videoUrl: "/assets/videos/brew-now-demo.mp4",
+      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git",
+      category: "android",
+      featured: false
     }
   };
 
@@ -39,24 +159,27 @@ The application follows modern development practices with a clean, intuitive int
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
-          <Link 
-            to="/projects"
-            className="inline-flex items-center gap-2 bg-red-700 text-white px-8 py-4 rounded-full font-medium hover:bg-red-800 transition-all duration-300"
-          >
-            <FaArrowLeft />
-            Back to Projects
-          </Link>
+      <PageTransition>
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+            <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
+            <Link 
+              to="/projects"
+              className="inline-flex items-center gap-2 bg-red-700 text-white px-8 py-4 rounded-full font-medium hover:bg-red-800 transition-all duration-300"
+            >
+              <FaArrowLeft />
+              Back to Projects
+            </Link>
+          </div>
         </div>
-      </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <PageTransition>
+      <div className="min-h-screen bg-white">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
         <Link to="/" className="block">
@@ -164,33 +287,49 @@ The application follows modern development practices with a clean, intuitive int
               
               <div className="flex flex-wrap gap-2 mb-8">
                 {project.tech.map((tech, index) => (
-                  <span 
+                  <div 
                     key={index}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-full"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-full"
                   >
-                    {tech}
-                  </span>
+                    {getTechIcon(tech)}
+                    <span>{tech}</span>
+                  </div>
                 ))}
               </div>
 
-              <a 
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300"
-              >
-                <FaGithub />
-                View on GitHub
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 justify-center"
+                >
+                  <FaGithub />
+                  View on GitHub
+                </a>
+                {project.figmaUrl && (
+                  <a 
+                    href={project.figmaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full font-medium hover:bg-purple-600 hover:text-white transition-all duration-300 justify-center"
+                  >
+                    <SiFigma />
+                    View Prototype
+                  </a>
+                )}
+              </div>
             </div>
 
             <div className="relative">
               {project.videoUrl ? (
                 <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden">
-                  {/* Video will be added here later */}
                   <video 
                     className="w-full h-full object-cover"
-                    controls
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     poster={project.image}
                   >
                     <source src={project.videoUrl} type="video/mp4" />
@@ -198,12 +337,30 @@ The application follows modern development practices with a clean, intuitive int
                   </video>
                 </div>
               ) : (
-                <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative">
+                  <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden">
+                    <img 
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* For design projects, add prototype link overlay */}
+                  {project.figmaUrl && (
+                    <div className="absolute inset-0 bg-black/50 rounded-2xl flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                      <a
+                        href={project.figmaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors flex items-center gap-2"
+                      >
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.02s-1.354-3.02-3.019-3.02h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.491S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.026-4.49 4.515-4.49c2.489 0 4.515 2.014 4.515 4.49S10.661 24 8.172 24zm0-7.509c-1.665 0-3.044 1.354-3.044 3.019s1.379 3.019 3.044 3.019c1.665 0 3.044-1.355 3.044-3.02s-1.379-3.018-3.044-3.018zM15.851 15.019c-2.489 0-4.515-2.014-4.515-4.49s2.026-4.49 4.515-4.49c2.489 0 4.515 2.014 4.515 4.49s-2.026 4.49-4.515 4.49zm0-7.509c-1.665 0-3.044 1.354-3.044 3.019s1.379 3.019 3.044 3.019c1.665 0 3.044-1.354 3.044-3.019s-1.379-3.019-3.044-3.019z"/>
+                        </svg>
+                        View Prototype
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -352,6 +509,7 @@ The application follows modern development practices with a clean, intuitive int
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 
