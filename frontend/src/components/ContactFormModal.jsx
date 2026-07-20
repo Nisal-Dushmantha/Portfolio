@@ -31,7 +31,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
           
           {/* Modal */}
           <motion.div 
-            className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-gray-900 rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -43,9 +43,9 @@ const ContactFormModal = ({ isOpen, onClose }) => {
             }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between p-6 border-b border-gray-700">
               <motion.h2 
-                className="text-2xl font-bold text-gray-900"
+                className="text-2xl font-bold text-white"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
@@ -115,7 +115,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -124,7 +124,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 disabled={isLoading}
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Your full name"
                 required
               />
@@ -135,7 +135,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.3 }}
             >
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
@@ -144,7 +144,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isLoading}
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="your.email@example.com"
                 required
               />
@@ -155,7 +155,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.3 }}
             >
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Message <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -164,7 +164,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
                 value={formData.message}
                 onChange={handleChange}
                 disabled={isLoading}
-                className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Tell me about your project, ideas, or how I can help you..."
                 required
               ></textarea>
@@ -213,3 +213,9 @@ const ContactFormModal = ({ isOpen, onClose }) => {
 };
 
 export default ContactFormModal;
+
+
+
+
+
+

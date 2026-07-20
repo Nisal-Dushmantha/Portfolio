@@ -160,9 +160,9 @@ This project focuses on the front-end user experience and interface design aspec
   if (!project) {
     return (
       <PageTransition>
-        <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="min-h-screen bg-gray-900 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
             <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
             <Link 
               to="/projects"
@@ -179,11 +179,11 @@ This project focuses on the front-end user experience and interface design aspec
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gray-900">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
         <Link to="/" className="block">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-100">
+          <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-700">
             <img 
               src="/assets/images/nd-logo.png" 
               alt="ND Logo" 
@@ -195,10 +195,10 @@ This project focuses on the front-end user experience and interface design aspec
 
       {/* Navigation */}
       <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
+        <div className="hidden md:flex items-center space-x-8 bg-gray-900/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-700 shadow-lg">
           <Link 
             to="/"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
+            className="text-gray-600 hover:text-white transition-colors font-medium text-sm"
           >
             Home
           </Link>
@@ -210,7 +210,7 @@ This project focuses on the front-end user experience and interface design aspec
           </Link>
           <Link 
             to="/#contact"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
+            className="text-gray-600 hover:text-white transition-colors font-medium text-sm"
           >
             Contact
           </Link>
@@ -224,7 +224,7 @@ This project focuses on the front-end user experience and interface design aspec
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
+          className="md:hidden p-3 bg-gray-900 rounded-full shadow-lg border border-gray-700"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -232,10 +232,10 @@ This project focuses on the front-end user experience and interface design aspec
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="absolute top-16 right-0 w-48 bg-white rounded-2xl shadow-xl border border-gray-200 py-4 md:hidden">
+          <div className="absolute top-16 right-0 w-48 bg-gray-900 rounded-2xl shadow-xl border border-gray-700 py-4 md:hidden">
             <Link 
               to="/"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
+              className="block px-6 py-2 text-gray-600 hover:text-white hover:bg-gray-50 transition-colors font-medium text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
@@ -249,7 +249,7 @@ This project focuses on the front-end user experience and interface design aspec
             </Link>
             <Link 
               to="/#contact"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
+              className="block px-6 py-2 text-gray-600 hover:text-white hover:bg-gray-50 transition-colors font-medium text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
@@ -270,7 +270,7 @@ This project focuses on the front-end user experience and interface design aspec
         <div className="max-w-6xl mx-auto">
           <Link 
             to="/projects"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors font-medium mb-8"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-white transition-colors font-medium mb-8"
           >
             <FaArrowLeft />
             Back to Projects
@@ -278,7 +278,7 @@ This project focuses on the front-end user experience and interface design aspec
           
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 {project.title}
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed mb-8">
@@ -289,7 +289,7 @@ This project focuses on the front-end user experience and interface design aspec
                 {project.tech.map((tech, index) => (
                   <div 
                     key={index}
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-full"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-300 text-sm font-medium rounded-full"
                   >
                     {getTechIcon(tech)}
                     <span>{tech}</span>
@@ -352,7 +352,7 @@ This project focuses on the front-end user experience and interface design aspec
                         href={project.figmaUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors flex items-center gap-2"
+                        className="bg-gray-900 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors flex items-center gap-2"
                       >
                         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.02s-1.354-3.02-3.019-3.02h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.491S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.026-4.49 4.515-4.49c2.489 0 4.515 2.014 4.515 4.49S10.661 24 8.172 24zm0-7.509c-1.665 0-3.044 1.354-3.044 3.019s1.379 3.019 3.044 3.019c1.665 0 3.044-1.355 3.044-3.02s-1.379-3.018-3.044-3.018zM15.851 15.019c-2.489 0-4.515-2.014-4.515-4.49s2.026-4.49 4.515-4.49c2.489 0 4.515 2.014 4.515 4.49s-2.026 4.49-4.515 4.49zm0-7.509c-1.665 0-3.044 1.354-3.044 3.019s1.379 3.019 3.044 3.019c1.665 0 3.044-1.354 3.044-3.019s-1.379-3.019-3.044-3.019z"/>
@@ -371,10 +371,10 @@ This project focuses on the front-end user experience and interface design aspec
       {/* Detailed Description */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Project Details</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">Project Details</h2>
           <div className="prose prose-lg max-w-none">
             {project.detailedDescription.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-gray-700 leading-relaxed mb-6">
+              <p key={index} className="text-gray-300 leading-relaxed mb-6">
                 {paragraph.split('\n').map((line, lineIndex) => (
                   <span key={lineIndex}>
                     {line}
@@ -388,10 +388,10 @@ This project focuses on the front-end user experience and interface design aspec
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-900">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Interested in This Project?</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Interested in This Project?</h2>
             <p className="text-xl text-gray-600 leading-relaxed">
               Have questions or want to discuss similar solutions for your business? Get in touch!
             </p>
@@ -417,7 +417,7 @@ This project focuses on the front-end user experience and interface design aspec
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -426,13 +426,13 @@ This project focuses on the front-end user experience and interface design aspec
                     value={formData.name}
                     onChange={handleChange}
                     disabled={isLoading}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                     placeholder="Your full name"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Email <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -441,7 +441,7 @@ This project focuses on the front-end user experience and interface design aspec
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isLoading}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -449,7 +449,7 @@ This project focuses on the front-end user experience and interface design aspec
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -458,7 +458,7 @@ This project focuses on the front-end user experience and interface design aspec
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-900 border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder={`I'm interested in the ${project.title} project. I'd like to know more about...`}
                   required
                 ></textarea>
@@ -487,7 +487,7 @@ This project focuses on the front-end user experience and interface design aspec
       <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
               <img 
                 src="/assets/images/nd-logo.png" 
                 alt="ND Logo" 
@@ -514,3 +514,9 @@ This project focuses on the front-end user experience and interface design aspec
 };
 
 export default ProjectDetail;
+
+
+
+
+
+

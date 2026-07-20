@@ -88,11 +88,11 @@ const AllProjects = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gray-900">
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
         <Link to="/" className="block">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-100">
+          <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-700">
             <img 
               src="/assets/images/nd-logo.png" 
               alt="ND Logo" 
@@ -104,10 +104,10 @@ const AllProjects = () => {
 
       {/* Navigation */}
       <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
+        <div className="hidden md:flex items-center space-x-8 bg-gray-900/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-700 shadow-lg">
           <Link 
             to="/"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
+            className="text-gray-600 hover:text-white transition-colors font-medium text-sm"
           >
             Home
           </Link>
@@ -118,7 +118,7 @@ const AllProjects = () => {
           </button>
           <Link 
             to="/#contact"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
+            className="text-gray-600 hover:text-white transition-colors font-medium text-sm"
           >
             Contact
           </Link>
@@ -132,7 +132,7 @@ const AllProjects = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
+          className="md:hidden p-3 bg-gray-900 rounded-full shadow-lg border border-gray-700"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -140,10 +140,10 @@ const AllProjects = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="absolute top-16 right-0 w-48 bg-white rounded-2xl shadow-xl border border-gray-200 py-4 md:hidden">
+          <div className="absolute top-16 right-0 w-48 bg-gray-900 rounded-2xl shadow-xl border border-gray-700 py-4 md:hidden">
             <Link 
               to="/"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
+              className="block px-6 py-2 text-gray-600 hover:text-white hover:bg-gray-50 transition-colors font-medium text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
@@ -155,7 +155,7 @@ const AllProjects = () => {
             </button>
             <Link 
               to="/#contact"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
+              className="block px-6 py-2 text-gray-600 hover:text-white hover:bg-gray-50 transition-colors font-medium text-sm"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
@@ -174,7 +174,7 @@ const AllProjects = () => {
       {/* Header Section */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             All Projects
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -195,7 +195,7 @@ const AllProjects = () => {
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   activeFilter === category.key
                     ? 'bg-gray-900 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 text-gray-300 hover:bg-gray-200'
                 }`}
               >
                 {category.label}
@@ -208,7 +208,7 @@ const AllProjects = () => {
             {filteredProjects.map((project) => (
               <div 
                 key={project.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100 flex flex-col"
+                className="bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-700 flex flex-col"
               >
                 <div className="relative overflow-hidden">
                   <img 
@@ -224,7 +224,7 @@ const AllProjects = () => {
                 </div>
                 
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-700 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
@@ -251,7 +251,7 @@ const AllProjects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-3 rounded-xl hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium text-sm"
+                      className="flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-300 px-4 py-3 rounded-xl hover:border-gray-900 hover:text-white transition-all duration-300 font-medium text-sm"
                     >
                       <FaGithub />
                       Code
@@ -284,13 +284,13 @@ const AllProjects = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/#contact"
-              className="bg-white text-gray-900 px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 font-medium"
+              className="bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 font-medium"
             >
               Get In Touch
             </Link>
             <Link 
               to="/profile"
-              className="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium"
+              className="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 font-medium"
             >
               Learn More About Me
             </Link>
@@ -312,7 +312,7 @@ const AllProjects = () => {
             {/* Brand Column */}
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
                   <img 
                     src="/assets/images/nd-logo.png" 
                     alt="ND Logo" 
@@ -373,3 +373,9 @@ const AllProjects = () => {
 };
 
 export default AllProjects;
+
+
+
+
+
+

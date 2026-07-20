@@ -5,6 +5,7 @@ import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJa
 import { useContactForm } from '../hooks/useContactForm';
 import { useActiveSection } from '../hooks/useActiveSection';
 import PageTransition from './PageTransition';
+import Particles from './ui/Particles';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -78,10 +79,14 @@ const Home = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gray-900 relative">
+        {/* Page-wide Particle Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Particles particleCount={60} color={'255,59,48'} maxSize={3} maxVelocity={0.6} linkDistance={120} />
+      </div>
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
-        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-100">
+        <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-700">
           <img 
             src="/assets/images/nd-logo.png" 
             alt="ND Logo" 
@@ -92,13 +97,13 @@ const Home = () => {
 
       {/* Navigation */}
       <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
+        <div className="hidden md:flex items-center space-x-8 bg-gray-800/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-700 shadow-lg">
           <button 
             onClick={() => scrollToSection('hero')}
             className={`transition-colors font-medium text-sm ${
               activeSection === 'hero' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'text-red-500' 
+                : 'text-gray-400 hover:text-gray-950'
             }`}
           >
             Home
@@ -107,8 +112,8 @@ const Home = () => {
             onClick={() => scrollToSection('projects')}
             className={`transition-colors font-medium text-sm ${
               activeSection === 'projects' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'text-red-500' 
+                : 'text-gray-400 hover:text-gray-950'
             }`}
           >
             Projects
@@ -117,15 +122,15 @@ const Home = () => {
             onClick={() => scrollToSection('contact')}
             className={`transition-colors font-medium text-sm ${
               activeSection === 'contact' 
-                ? 'text-red-700' 
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'text-red-500' 
+                : 'text-gray-400 hover:text-gray-950'
             }`}
           >
             Contact
           </button>
           <Link 
             to="/profile"
-            className="text-white bg-red-700 px-4 py-2 rounded-full font-medium text-sm"
+            className="text-gray-950 bg-red-700 px-4 py-2 rounded-full font-medium text-sm"
           >
             About
           </Link>
@@ -133,7 +138,7 @@ const Home = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
+          className="md:hidden p-3 bg-gray-800 rounded-full shadow-lg border border-gray-700 text-gray-950"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -141,14 +146,14 @@ const Home = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-16 right-0 bg-white/95 backdrop-blur-lg rounded-2xl border border-gray-200 shadow-lg p-4 min-w-[200px]">
+          <div className="md:hidden absolute top-16 right-0 bg-gray-800/95 backdrop-blur-lg rounded-2xl border border-gray-700 shadow-lg p-4 min-w-[200px]">
             <div className="space-y-3">
               <button 
                 onClick={() => scrollToSection('hero')}
                 className={`block w-full text-left transition-colors font-medium py-2 ${
                   activeSection === 'hero' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-red-500' 
+                    : 'text-gray-400 hover:text-gray-950'
                 }`}
               >
                 Home
@@ -157,8 +162,8 @@ const Home = () => {
                 onClick={() => scrollToSection('projects')}
                 className={`block w-full text-left transition-colors font-medium py-2 ${
                   activeSection === 'projects' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-red-500' 
+                    : 'text-gray-400 hover:text-gray-950'
                 }`}
               >
                 Projects
@@ -167,15 +172,15 @@ const Home = () => {
                 onClick={() => scrollToSection('contact')}
                 className={`block w-full text-left transition-colors font-medium py-2 ${
                   activeSection === 'contact' 
-                    ? 'text-red-700' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-red-500' 
+                    : 'text-gray-400 hover:text-gray-950'
                 }`}
               >
                 Contact
               </button>
               <Link 
                 to="/profile" 
-                className="block text-white bg-red-700 px-4 py-2 rounded-full font-medium text-center text-sm"
+                className="block text-gray-950 bg-red-700 px-4 py-2 rounded-full font-medium text-center text-sm"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
@@ -186,22 +191,22 @@ const Home = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center bg-gradient-to-br from-white via-gray-50 to-white">
+      <section id="hero" className="min-h-screen flex items-center bg-white">
         <div className="max-w-6xl mx-auto px-6 py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <p className="text-lg text-gray-600 font-medium">Hello, I'm</p>
+                <p className="text-lg text-gray-950 font-medium">Hello, I'm</p>
                 <h1 className="text-5xl lg:text-6xl font-bold text-red-700 leading-tight">
                   Nisal Dushmantha
                 </h1>
-                <h2 className="text-2xl lg:text-3xl text-gray-700 font-light">
+                <h2 className="text-2xl lg:text-3xl text-gray-400 font-light">
                   SLIIT Undergraduate
                 </h2>
               </div>
               
-              <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+              <p className="text-lg text-gray-950 leading-relaxed max-w-lg">
                 MERN Stack Frontend Developer, UI/UX Designer, and Tech Enthusiast. I create 
                 immersive digital experiences that blend creativity with cutting-edge technology.
               </p>
@@ -210,14 +215,14 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => scrollToSection('projects')}
-                  className="bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 font-medium flex items-center justify-center gap-2 hover:transform hover:scale-105"
+                  className="border-2 border-gray-300 text-gray-950 px-8 py-4 rounded-full hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium flex items-center justify-center gap-2 hover:transform hover:scale-105"
                 >
                   View Projects
                 </button>
                 <a 
                   href="/assets/documents/P.G.N.L.Dushmantha CV.pdf"
                   download="Nisal_Dushmantha_CV.pdf"
-                  className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium flex items-center justify-center gap-2"
+                  className="border-2 border-gray-300 text-gray-950 px-8 py-4 rounded-full hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium flex items-center justify-center gap-2 hover:transform hover:scale-105"
                 >
                   <FaDownload className="text-sm" />
                   Download Resume
@@ -225,7 +230,7 @@ const Home = () => {
               </div>
 
               {/* Status Badge */}
-              <div className="inline-flex items-center gap-3 bg-green-50 px-4 py-2 rounded-full">
+              <div className="inline-flex items-center gap-3 bg-gray-700 px-4 py-2 rounded-full">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-green-700 font-medium text-sm">Available for new projects</span>
               </div>
@@ -247,74 +252,20 @@ const Home = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">10+</div>
+              <div className="text-3xl font-bold text-red-700 mb-2">10+</div>
               <div className="text-gray-600 text-sm">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">3+</div>
+              <div className="text-3xl font-bold text-red-700 mb-2">3+</div>
               <div className="text-gray-600 text-sm">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">48h</div>
+              <div className="text-3xl font-bold text-red-700 mb-2">48h</div>
               <div className="text-gray-600 text-sm">Response Time</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">∞</div>
+              <div className="text-3xl font-bold text-red-700 mb-2">∞</div>
               <div className="text-gray-600 text-sm">Passion Level</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <img
-                src="/assets/images/nisal-profile.jpg"
-                alt="About Nisal"
-                className="w-full max-w-md rounded-3xl shadow-xl border-4 border-white"
-              />
-            </div>
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gray-900">About Me</h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                I'm a passionate undergraduate student at SLIIT University, specializing in
-                creating user-centered digital experiences. My journey combines the analytical
-                mindset of a developer with the creative vision of a designer.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                When I'm not coding or designing, you'll find me exploring new technologies,
-                learning about emerging frameworks, or working on personal projects that challenge
-                my skills and creativity.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-red-50 rounded-2xl flex items-center justify-center">
-                    <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  </div>
-                  <span className="text-gray-700 font-medium">3+ years of development experience</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-red-50 rounded-2xl flex items-center justify-center">
-                    <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  </div>
-                  <span className="text-gray-700 font-medium">Specialized in React, Node.js, and MongoDB</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-red-50 rounded-2xl flex items-center justify-center">
-                    <span className="w-2 h-2 bg-red-700 rounded-full"></span>
-                  </div>
-                  <span className="text-gray-700 font-medium">Passionate about clean code and best practices</span>
-                </div>
-              </div>
-              <Link 
-                to="/profile"
-                className="inline-flex items-center gap-2 bg-red-700 text-white px-8 py-4 rounded-full font-medium hover:bg-red-800 transition-all duration-300 hover:transform hover:scale-105"
-              >
-                Learn More
-              </Link>
             </div>
           </div>
         </div>
@@ -334,7 +285,7 @@ const Home = () => {
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group bg-gray-50 border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                className="group bg-gray-50 border border-gray-700 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -361,7 +312,7 @@ const Home = () => {
                   <div className="flex gap-3 mt-auto">
                     <Link
                       to={`/project/${project.id}`}
-                      className="flex-1 bg-gray-900 text-white text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
+                      className="flex-1 bg-gray-900 text-gray-950 text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
                     >
                       Read More
                     </Link>
@@ -391,34 +342,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Create Something Amazing?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            Let's collaborate and bring your digital vision to life with cutting-edge technology and creative design.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-white text-gray-900 px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 font-medium"
-            >
-              Get In Touch
-            </button>
-            <Link 
-              to="/projects"
-              className="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium"
-            >
-              View My Work
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50">
+      <section id="contact" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
@@ -426,7 +351,6 @@ const Home = () => {
               Have a project in mind or want to discuss opportunities? I'd love to hear from you!
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div>
@@ -462,7 +386,7 @@ const Home = () => {
                     href="https://github.com/Nisal-Dushmantha"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-white hover:bg-gray-800 transition-colors"
+                    className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-gray-800 transition-colors"
                   >
                     <FaGithub className="text-xl" />
                   </a>
@@ -470,7 +394,7 @@ const Home = () => {
                     href="https://www.linkedin.com/in/nisal-lawanya-64b17b382"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+                    className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-blue-700 transition-colors"
                   >
                     <FaLinkedin className="text-xl" />
                   </a>
@@ -478,7 +402,7 @@ const Home = () => {
                     href="https://www.instagram.com/lawa.nya_/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-pink-600 rounded-2xl flex items-center justify-center text-white hover:bg-pink-700 transition-colors"
+                    className="w-12 h-12 bg-pink-600 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-pink-700 transition-colors"
                   >
                     <FaInstagram className="text-xl" />
                   </a>
@@ -513,13 +437,13 @@ const Home = () => {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed"
                   placeholder="Your full name"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -528,13 +452,13 @@ const Home = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed"
                   placeholder="your.email@example.com"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -543,7 +467,7 @@ const Home = () => {
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors resize-none disabled:bg-gray-700 disabled:cursor-not-allowed"
                   placeholder="Tell me about your project, ideas, or how I can help you..."
                   required
                 ></textarea>
@@ -551,7 +475,7 @@ const Home = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-red-700 text-white py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                className="w-full bg-red-700 text-gray-950 py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <>
@@ -571,19 +495,19 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gray-900 text-gray-950 py-16 relative z-10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-1">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden border border-gray-100">
+              <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mb-4 overflow-hidden border border-gray-700">
                 <img 
                   src="/assets/images/nd-logo.png" 
                   alt="ND Logo" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">Nisal Dushmantha</h3>
+              <h3 className="text-xl font-bold mb-2 text-white">Nisal Dushmantha</h3>
               <p className="text-gray-400 text-sm">
                 MERN Stack Frontend Developer, UI/UX Designer, and Tech Enthusiast. Creating
                 immersive digital experiences with cutting-edge technology.
@@ -596,35 +520,35 @@ const Home = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
               <div className="space-y-2">
                 <button 
                   onClick={() => scrollToSection('hero')}
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
                 >
                   Home
                 </button>
                 <button 
                   onClick={() => scrollToSection('about')}
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
                 >
                   About
                 </button>
                 <Link 
                   to="/profile"
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
                 >
                   Skills
                 </Link>
                 <button 
                   onClick={() => scrollToSection('projects')}
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
                 >
                   Projects
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="block text-gray-400 hover:text-white transition-colors text-sm"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
                 >
                   Contact
                 </button>
@@ -633,7 +557,7 @@ const Home = () => {
 
             {/* Services */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Services</h4>
+              <h4 className="text-lg font-semibold mb-4 text-white">Services</h4>
               <div className="space-y-2 text-sm">
                 <p className="text-gray-400">Frontend Development</p>
                 <p className="text-gray-400">UI/UX Design</p>
@@ -645,11 +569,11 @@ const Home = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Get In Touch</h4>
+              <h4 className="text-lg font-semibold mb-4 text-white">Get In Touch</h4>
               <div className="space-y-3 text-sm">
                 <a 
                   href="mailto:lawanyanisal@gmail.com"
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className="block text-gray-400 hover:text-gray-950 transition-colors"
                 >
                   lawanyanisal@gmail.com
                 </a>
@@ -659,7 +583,7 @@ const Home = () => {
                     href="https://github.com/Nisal-Dushmantha"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
                   >
                     <FaGithub />
                   </a>
@@ -667,7 +591,7 @@ const Home = () => {
                     href="https://www.linkedin.com/in/nisal-lawanya-64b17b382"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
                   >
                     <FaLinkedin />
                   </a>
@@ -675,7 +599,7 @@ const Home = () => {
                     href="https://www.instagram.com/lawa.nya_/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
                   >
                     <FaInstagram />
                   </a>
@@ -700,3 +624,4 @@ const Home = () => {
 };
 
 export default Home;
+

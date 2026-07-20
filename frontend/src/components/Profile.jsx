@@ -34,12 +34,12 @@ const Profile = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-lg border-b border-gray-700">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-between items-center py-4">
-            <Link to="/" className="text-2xl font-bold text-gray-900">
+            <Link to="/" className="text-2xl font-bold text-white">
               Nisal<span className="text-red-700">.</span>
             </Link>
             
@@ -47,7 +47,7 @@ const Profile = () => {
             <div className="hidden md:flex items-center space-x-8">
               <Link 
                 to="/"
-                className="text-gray-600 hover:text-gray-900 font-medium text-sm"
+                className="text-gray-400 hover:text-white font-medium text-sm"
               >
                 Home
               </Link>
@@ -57,7 +57,7 @@ const Profile = () => {
                   e.preventDefault();
                   window.location.href = '/#projects';
                 }}
-                className="text-gray-600 hover:text-gray-900 font-medium text-sm"
+                className="text-gray-400 hover:text-white font-medium text-sm"
               >
                 Projects
               </Link>
@@ -67,7 +67,7 @@ const Profile = () => {
                   e.preventDefault();
                   window.location.href = '/#contact';
                 }}
-                className="text-gray-600 hover:text-gray-900 font-medium text-sm"
+                className="text-gray-400 hover:text-white font-medium text-sm"
               >
                 Contact
               </Link>
@@ -76,7 +76,7 @@ const Profile = () => {
 
             {/* Mobile Menu Button */}
             <button 
-              className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
+              className="md:hidden p-3 bg-gray-900 rounded-full shadow-lg border border-gray-700"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -86,11 +86,11 @@ const Profile = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200">
+          <div className="md:hidden bg-gray-900/95 backdrop-blur-lg border-t border-gray-700">
             <div className="px-6 py-4 space-y-4">
               <Link 
                 to="/"
-                className="block text-gray-600 hover:text-gray-900 font-medium py-2"
+                className="block text-gray-400 hover:text-white font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
@@ -102,7 +102,7 @@ const Profile = () => {
                   window.location.href = '/#projects';
                   setMobileMenuOpen(false);
                 }}
-                className="block text-gray-600 hover:text-gray-900 font-medium py-2"
+                className="block text-gray-400 hover:text-white font-medium py-2"
               >
                 Projects
               </Link>
@@ -113,7 +113,7 @@ const Profile = () => {
                   window.location.href = '/#contact';
                   setMobileMenuOpen(false);
                 }}
-                className="block text-gray-600 hover:text-gray-900 font-medium py-2"
+                className="block text-gray-400 hover:text-white font-medium py-2"
               >
                 Contact
               </Link>
@@ -134,10 +134,10 @@ const Profile = () => {
                   <img 
                     src={profile.profileImage} 
                     alt={profile.name}
-                    className="w-full h-full rounded-3xl object-cover border-4 border-gray-100 shadow-xl"
+                    className="w-full h-full rounded-3xl object-cover border-4 border-gray-700 shadow-xl"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center border-4 border-gray-100 shadow-xl">
+                  <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center border-4 border-gray-700 shadow-xl">
                     <span className="text-5xl font-bold text-white">
                       {profile.name.split(' ').map(n => n[0]).join('')}
                     </span>
@@ -145,19 +145,19 @@ const Profile = () => {
                 )}
               </div>
               <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center border-4 border-white">
-                <span className="w-3 h-3 bg-white rounded-full"></span>
+                <span className="w-3 h-3 bg-gray-900 rounded-full"></span>
               </div>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
               {profile.name}
             </h1>
             
-            <p className="text-2xl text-gray-600 mb-2 font-light">
+            <p className="text-2xl text-gray-400 mb-2 font-light">
               {profile.title}
             </p>
             
-            <div className="flex items-center justify-center gap-6 text-gray-500 mb-8">
+            <div className="flex items-center justify-center gap-6 text-gray-400 mb-8">
               <div className="flex items-center gap-2">
                 <FaBirthdayCake />
                 <span>{profile.age} years old</span>
@@ -191,21 +191,21 @@ const Profile = () => {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* About Section */}
-              <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">About Me</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
+              <div className="bg-gray-800 rounded-3xl p-8 border border-gray-700">
+                <h2 className="text-3xl font-bold text-white mb-6">About Me</h2>
+                <p className="text-lg text-gray-300 leading-relaxed">
                   {profile.bio}
                 </p>
               </div>
               
               {/* Skills Section */}
-              <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Skills & Technologies</h2>
+              <div className="bg-gray-800 rounded-3xl p-8 border border-gray-700">
+                <h2 className="text-3xl font-bold text-white mb-6">Skills & Technologies</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {profile.skills && profile.skills.map((skill, index) => (
                     <div 
                       key={index}
-                      className="bg-white border border-gray-200 text-gray-700 px-4 py-3 rounded-xl text-center font-medium hover:border-red-700 hover:text-red-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+                      className="bg-gray-900 border border-gray-700 text-gray-300 px-4 py-3 rounded-xl text-center font-medium hover:border-red-700 hover:text-red-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1"
                     >
                       {skill}
                     </div>
@@ -217,58 +217,58 @@ const Profile = () => {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Contact Info */}
-              <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+              <div className="bg-gray-800 rounded-3xl p-8 border border-gray-700">
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <FaEnvelope className="text-gray-600" />
+                    <div className="w-12 h-12 bg-gray-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <FaEnvelope className="text-gray-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Email</p>
-                      <p className="text-gray-900 font-semibold">{profile.email}</p>
+                      <p className="text-sm text-gray-400 font-medium">Email</p>
+                      <p className="text-white font-semibold">{profile.email}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <FaPhone className="text-gray-600" />
+                    <div className="w-12 h-12 bg-gray-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <FaPhone className="text-gray-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Phone</p>
-                      <p className="text-gray-900 font-semibold">{profile.phone}</p>
+                      <p className="text-sm text-gray-400 font-medium">Phone</p>
+                      <p className="text-white font-semibold">{profile.phone}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <FaMapMarkerAlt className="text-gray-600" />
+                    <div className="w-12 h-12 bg-gray-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <FaMapMarkerAlt className="text-gray-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500 font-medium">Location</p>
-                      <p className="text-gray-900 font-semibold">{profile.location}</p>
+                      <p className="text-sm text-gray-400 font-medium">Location</p>
+                      <p className="text-white font-semibold">{profile.location}</p>
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Social Links */}
-              <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Connect With Me</h3>
+              <div className="bg-gray-800 rounded-3xl p-8 border border-gray-700">
+                <h3 className="text-2xl font-bold text-white mb-6">Connect With Me</h3>
                 <div className="space-y-3">
                   {profile.socialLinks?.linkedin && (
                     <a 
                       href={profile.socialLinks.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                      className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl border border-gray-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
                     >
-                      <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                      <div className="w-12 h-12 bg-red-900 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
                         <FaLinkedin className="text-red-600 text-xl" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">LinkedIn</p>
-                        <p className="text-sm text-gray-500">Professional network</p>
+                        <p className="font-semibold text-white">LinkedIn</p>
+                        <p className="text-sm text-gray-400">Professional network</p>
                       </div>
                     </a>
                   )}
@@ -278,14 +278,14 @@ const Profile = () => {
                       href={profile.socialLinks.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                      className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl border border-gray-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
                     >
-                      <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center group-hover:bg-gray-100 transition-colors">
-                        <FaGithub className="text-gray-700 text-xl" />
+                      <div className="w-12 h-12 bg-gray-800 rounded-2xl flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                        <FaGithub className="text-gray-300 text-xl" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">GitHub</p>
-                        <p className="text-sm text-gray-500">Code repositories</p>
+                        <p className="font-semibold text-white">GitHub</p>
+                        <p className="text-sm text-gray-400">Code repositories</p>
                       </div>
                     </a>
                   )}
@@ -295,14 +295,14 @@ const Profile = () => {
                       href={profile.socialLinks.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                      className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl border border-gray-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
                     >
-                      <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                      <div className="w-12 h-12 bg-red-900 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
                         <FaTwitter className="text-red-400 text-xl" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Twitter</p>
-                        <p className="text-sm text-gray-500">Latest updates</p>
+                        <p className="font-semibold text-white">Twitter</p>
+                        <p className="text-sm text-gray-400">Latest updates</p>
                       </div>
                     </a>
                   )}
@@ -312,14 +312,14 @@ const Profile = () => {
                       href={profile.socialLinks.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                      className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl border border-gray-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
                     >
                       <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center group-hover:bg-orange-100 transition-colors">
                         <FaInstagram className="text-orange-600 text-xl" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Instagram</p>
-                        <p className="text-sm text-gray-500">Photos & updates</p>
+                        <p className="font-semibold text-white">Instagram</p>
+                        <p className="text-sm text-gray-400">Photos & updates</p>
                       </div>
                     </a>
                   )}
@@ -329,14 +329,14 @@ const Profile = () => {
                       href={profile.socialLinks.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                      className="flex items-center gap-4 p-4 bg-gray-900 rounded-2xl border border-gray-700 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
                     >
                       <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center group-hover:bg-green-100 transition-colors">
                         <FaGlobe className="text-green-600 text-xl" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Website</p>
-                        <p className="text-sm text-gray-500">Personal portfolio</p>
+                        <p className="font-semibold text-white">Website</p>
+                        <p className="text-sm text-gray-400">Personal portfolio</p>
                       </div>
                     </a>
                   )}
@@ -358,3 +358,14 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+
+
+
+
+
+
+
+
