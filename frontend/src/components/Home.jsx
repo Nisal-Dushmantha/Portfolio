@@ -79,14 +79,14 @@ const Home = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gray-900 relative">
+      <div className="min-h-screen bg-white relative">
         {/* Page-wide Particle Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Particles particleCount={60} color={'255,59,48'} maxSize={3} maxVelocity={0.6} linkDistance={120} />
       </div>
       {/* Floating Logo */}
       <div className="fixed top-8 left-8 z-50">
-        <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-700">
+        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-200">
           <img 
             src="/assets/images/nd-logo.png" 
             alt="ND Logo" 
@@ -97,13 +97,13 @@ const Home = () => {
 
       {/* Navigation */}
       <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-gray-800/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-700 shadow-lg">
+        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
           <button 
             onClick={() => scrollToSection('hero')}
             className={`transition-colors font-medium text-sm ${
               activeSection === 'hero' 
                 ? 'text-red-500' 
-                : 'text-gray-400 hover:text-gray-950'
+                : 'text-gray-600 hover:text-gray-950'
             }`}
           >
             Home
@@ -113,7 +113,7 @@ const Home = () => {
             className={`transition-colors font-medium text-sm ${
               activeSection === 'projects' 
                 ? 'text-red-500' 
-                : 'text-gray-400 hover:text-gray-950'
+                : 'text-gray-600 hover:text-gray-950'
             }`}
           >
             Projects
@@ -123,7 +123,7 @@ const Home = () => {
             className={`transition-colors font-medium text-sm ${
               activeSection === 'contact' 
                 ? 'text-red-500' 
-                : 'text-gray-400 hover:text-gray-950'
+                : 'text-gray-600 hover:text-gray-950'
             }`}
           >
             Contact
@@ -138,7 +138,7 @@ const Home = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-3 bg-gray-800 rounded-full shadow-lg border border-gray-700 text-gray-950"
+          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200 text-gray-950"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -146,7 +146,7 @@ const Home = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-16 right-0 bg-gray-800/95 backdrop-blur-lg rounded-2xl border border-gray-700 shadow-lg p-4 min-w-[200px]">
+          <div className="md:hidden absolute top-16 right-0 bg-white/95 backdrop-blur-lg rounded-2xl border border-gray-200 shadow-lg p-4 min-w-[200px]">
             <div className="space-y-3">
               <button 
                 onClick={() => scrollToSection('hero')}
@@ -230,9 +230,9 @@ const Home = () => {
               </div>
 
               {/* Status Badge */}
-              <div className="inline-flex items-center gap-3 bg-gray-700 px-4 py-2 rounded-full">
+              <div className="inline-flex items-center gap-3 bg-gray-100 px-4 py-2 rounded-full">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-green-700 font-medium text-sm">Available for new projects</span>
+                <span className="text-green-600 font-medium text-sm">Available for new projects</span>
               </div>
             </div>
 
@@ -285,7 +285,7 @@ const Home = () => {
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group bg-gray-50 border border-gray-700 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                className="group bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -302,7 +302,7 @@ const Home = () => {
                     {project.tech.map((tech, techIndex) => (
                       <div 
                         key={techIndex}
-                        className="flex items-center gap-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full px-3 py-1"
+                        className="flex items-center gap-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full px-3 py-1"
                       >
                         {getTechIcon(tech)}
                         <span>{tech}</span>
@@ -312,7 +312,7 @@ const Home = () => {
                   <div className="flex gap-3 mt-auto">
                     <Link
                       to={`/project/${project.id}`}
-                      className="flex-1 bg-gray-900 text-gray-950 text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
+                      className="flex-1 bg-gray-900 text-white text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
                     >
                       Read More
                     </Link>
@@ -386,7 +386,7 @@ const Home = () => {
                     href="https://github.com/Nisal-Dushmantha"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-gray-800 transition-colors"
+                    className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-white hover:bg-gray-800 transition-colors"
                   >
                     <FaGithub className="text-xl" />
                   </a>
@@ -394,7 +394,7 @@ const Home = () => {
                     href="https://www.linkedin.com/in/nisal-lawanya-64b17b382"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-blue-700 transition-colors"
+                    className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
                   >
                     <FaLinkedin className="text-xl" />
                   </a>
@@ -402,7 +402,7 @@ const Home = () => {
                     href="https://www.instagram.com/lawa.nya_/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-pink-600 rounded-2xl flex items-center justify-center text-gray-950 hover:bg-pink-700 transition-colors"
+                    className="w-12 h-12 bg-pink-600 rounded-2xl flex items-center justify-center text-white hover:bg-pink-700 transition-colors"
                   >
                     <FaInstagram className="text-xl" />
                   </a>
@@ -437,13 +437,13 @@ const Home = () => {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-900 placeholder-gray-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="Your full name"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -452,13 +452,13 @@ const Home = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-900 placeholder-gray-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="your.email@example.com"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -467,7 +467,7 @@ const Home = () => {
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isLoading}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-950 placeholder-gray-500 transition-colors resize-none disabled:bg-gray-700 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 text-gray-900 placeholder-gray-500 transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="Tell me about your project, ideas, or how I can help you..."
                   required
                 ></textarea>
@@ -475,7 +475,7 @@ const Home = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-red-700 text-gray-950 py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                className="w-full bg-red-700 text-white py-4 rounded-2xl hover:bg-red-800 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <>
@@ -495,60 +495,60 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-950 py-16 relative z-10">
+      <footer className="bg-gray-100 text-gray-900 py-16 relative z-10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-1">
-              <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mb-4 overflow-hidden border border-gray-700">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden border border-gray-200">
                 <img 
                   src="/assets/images/nd-logo.png" 
                   alt="ND Logo" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-white">Nisal Dushmantha</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Nisal Dushmantha</h3>
+              <p className="text-gray-600 text-sm">
                 MERN Stack Frontend Developer, UI/UX Designer, and Tech Enthusiast. Creating
                 immersive digital experiences with cutting-edge technology.
               </p>
-              <div className="mt-4 flex items-center gap-2 text-green-400 text-sm">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="mt-4 flex items-center gap-2 text-green-600 text-sm">
+                <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
                 Available for new projects
               </div>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-900">Quick Links</h4>
               <div className="space-y-2">
                 <button 
                   onClick={() => scrollToSection('hero')}
-                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   Home
                 </button>
                 <button 
                   onClick={() => scrollToSection('about')}
-                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   About
                 </button>
                 <Link 
                   to="/profile"
-                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   Skills
                 </Link>
                 <button 
                   onClick={() => scrollToSection('projects')}
-                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   Projects
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="block text-gray-400 hover:text-gray-950 transition-colors text-sm"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   Contact
                 </button>
@@ -557,7 +557,7 @@ const Home = () => {
 
             {/* Services */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-white">Services</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-900">Services</h4>
               <div className="space-y-2 text-sm">
                 <p className="text-gray-400">Frontend Development</p>
                 <p className="text-gray-400">UI/UX Design</p>
@@ -569,7 +569,7 @@ const Home = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-white">Get In Touch</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-900">Get In Touch</h4>
               <div className="space-y-3 text-sm">
                 <a 
                   href="mailto:lawanyanisal@gmail.com"
@@ -583,7 +583,7 @@ const Home = () => {
                     href="https://github.com/Nisal-Dushmantha"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-colors"
                   >
                     <FaGithub />
                   </a>
@@ -591,7 +591,7 @@ const Home = () => {
                     href="https://www.linkedin.com/in/nisal-lawanya-64b17b382"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-colors"
                   >
                     <FaLinkedin />
                   </a>
@@ -599,7 +599,7 @@ const Home = () => {
                     href="https://www.instagram.com/lawa.nya_/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-950 hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-colors"
                   >
                     <FaInstagram />
                   </a>
@@ -608,11 +608,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <div className="border-t border-gray-300 mt-12 pt-8 text-center">
             <p className="text-gray-400 text-sm">
               © 2024 Nisal Dushmantha. Made with ❤️ and ☕ + 🚀
             </p>
-            <p className="text-gray-500 text-xs mt-2">
+            <p className="text-gray-400 text-xs mt-2">
               Designed & Developed by Nisal Dushmantha
             </p>
           </div>

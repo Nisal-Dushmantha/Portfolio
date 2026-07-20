@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import './styles/themes.css';
 
 @layer base {
   * {
@@ -17,7 +16,7 @@
   
   body {
     font-family: 'Inter', sans-serif;
-    @apply text-white bg-gray-900;
+    @apply text-gray-900 bg-white;
   }
 }
 
@@ -31,7 +30,7 @@
   }
   
   .card {
-    @apply bg-gray-800 rounded-3xl border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-white rounded-3xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300;
   }
   
   .section-padding {
