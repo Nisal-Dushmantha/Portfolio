@@ -6,6 +6,7 @@ import { useContactForm } from '../hooks/useContactForm';
 import { useActiveSection } from '../hooks/useActiveSection';
 import PageTransition from './PageTransition';
 import Particles from './ui/Particles';
+import { projectsData } from '../data/projectsData';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,32 +51,7 @@ const Home = () => {
     }
   };
 
-  const projects = [
-    {
-      id: 1,
-      title: "Motor Bikes and Spare parts Management System",
-      description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
-      tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/rathnasiri-motors-dashboard.png",
-      github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git"
-    },
-    {
-      id: 2,
-      title: "BrewMe - UI/UX Design Project",
-      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
-      tech: ["Figma", "UI/UX Design"],
-      image: "/assets/images/brewme-screenshot.png",
-      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
-    },
-    {
-      id: 3,
-      title: "Brew Now - Android UI/UX Design",
-      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
-      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
-      image: "/assets/images/brew-now-android-studio.png",
-      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git"
-    }
-  ];
+  const projects = projectsData.filter(project => project.featured);
 
   return (
     <PageTransition>

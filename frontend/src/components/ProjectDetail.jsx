@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { FaGithub, FaArrowLeft, FaBars, FaTimes, FaSpinner, FaCheckCircle, FaExclamationCircle, FaReact, FaNodeJs, FaHtml5, FaCss3, FaJs, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
 import { useContactForm } from '../hooks/useContactForm';
+import { getProjectById } from '../data/projectsData';
 import PageTransition from './PageTransition';
 
 const ProjectDetail = () => {
@@ -43,119 +44,7 @@ const ProjectDetail = () => {
     }
   };
 
-  // Project data - this would normally come from a database or API
-  const projects = {
-    1: {
-      id: 1,
-      title: "Motor Bikes and Spare parts Management System",
-      description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
-      detailedDescription: `This comprehensive Motor Bikes and Spare Parts Management System is a full-stack web application designed to streamline operations for motorcycle dealerships and repair shops. The system provides a complete solution for managing inventory, tracking services and repairs, handling customer relationships, and managing finances.
-
-Key Features:
-• User Authentication & Authorization with role-based access control
-• Product & Inventory Management with real-time stock tracking
-• Service & Repair Management with job tracking and scheduling
-• Customer Management with detailed service history
-• Financial Management including invoicing and payment tracking
-• Responsive design optimized for desktop and mobile devices
-• Secure data handling and backup systems
-
-The application follows modern development practices with a clean, intuitive interface that makes it easy for staff to manage daily operations efficiently. Built with scalability in mind, it can handle growing business needs while maintaining optimal performance.`,
-      tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/rathnasiri-motors-dashboard.png",
-      videoUrl: "/assets/videos/rathnasiri-motors-demo.mp4", // Video added
-      github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git",
-      category: "fullstack",
-      featured: true
-    },
-    2: {
-      id: 2,
-      title: "BrewMe - UI/UX Design Project",
-      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
-      detailedDescription: `BrewMe is a comprehensive mobile application design project focused on revolutionizing the coffee ordering experience. This UI/UX design project addresses the pain points of traditional coffee ordering systems by creating an intuitive, efficient, and delightful user experience for both customers and baristas.
-
-Design Objectives:
-• Create an intuitive and user-friendly ordering interface
-• Streamline the coffee ordering and pickup process
-• Enhance customer engagement through personalized experiences
-• Optimize workflow efficiency for baristas and cafe staff
-• Implement modern design principles and accessibility standards
-
-Key Features Designed:
-• Personalized user profiles with order history and preferences
-• Real-time menu browsing with detailed coffee descriptions
-• Customizable order options (size, milk type, sweetness, etc.)
-• Location-based cafe finder with real-time availability
-• Order tracking with estimated preparation times
-• Integrated payment systems for seamless transactions
-• Loyalty program with rewards and special offers
-
-Design Process:
-The project followed a comprehensive design thinking approach, starting with user research and persona development, followed by wireframing, prototyping, and user testing. The design incorporates modern UI trends while maintaining usability and accessibility at its core.
-
-Tools & Methodologies:
-• User research and persona development
-• Wireframing and information architecture
-• High-fidelity prototyping and interaction design
-• Usability testing and iterative design improvements
-• Design system creation for consistency
-• Responsive design principles for various device sizes`,
-      tech: ["Figma", "UI/UX Design"],
-      image: "/assets/images/brewme-screenshot.png",
-      videoUrl: "/assets/videos/brewme-demo.mp4", // BrewMe demo video
-      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
-      figmaUrl: "https://www.figma.com/design/9emv7UHBV2lgsTID4k7aAQ/Untitled?node-id=0-1&t=jr3mvaLoJ5ihslPz-1", // Figma prototype link
-      category: "ui-ux",
-      featured: true
-    },
-    3: {
-      id: 3,
-      title: "Brew Now - Android UI/UX Design",
-      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
-      detailedDescription: `Brew Now is an Android mobile application UI/UX design project that showcases modern mobile interface design for a coffee ordering platform. Created using Android Studio and Kotlin, this project demonstrates front-end mobile development skills and user interface design principles without backend implementation.
-
-Design Objectives:
-• Create an intuitive and modern Android coffee ordering interface
-• Implement Material Design principles for consistent user experience
-• Develop responsive layouts for various Android screen sizes
-• Showcase advanced Android UI components and navigation patterns
-• Demonstrate proficiency in Android Studio and Kotlin development
-
-UI Features Designed:
-• Welcome and Onboarding screens with smooth transitions
-• User registration and login interface mockups
-• Coffee menu browsing with grid and list view options
-• Product detail screens with customization options
-• Shopping cart and checkout interface designs
-• User profile and settings screens
-• Order history and favorites interface
-• Modern navigation drawer and bottom navigation
-• Search functionality with filter options
-• Responsive design for tablets and phones
-
-Technical Implementation:
-• Kotlin programming language for Android development
-• Android Studio IDE for project development and layout design
-• XML layouts for responsive UI design
-• Material Design components and theming
-• RecyclerView for efficient list implementations
-• Fragment-based navigation architecture
-• Custom drawable resources and vector graphics
-• ViewBinding for type-safe view references
-• ConstraintLayout for flexible responsive designs
-
-Development Approach:
-This project focuses on the front-end user experience and interface design aspects of Android development. The emphasis was on creating visually appealing, user-friendly interfaces while learning Android development fundamentals, UI/UX design principles, and modern mobile design patterns. The project serves as a demonstration of mobile UI design capabilities and Android development skills.`,
-      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
-      image: "/assets/images/brew-now-android-studio.png",
-      videoUrl: "/assets/videos/brew-now-demo.mp4",
-      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git",
-      category: "android",
-      featured: false
-    }
-  };
-
-  const project = projects[id];
+  const project = getProjectById(id);
 
   if (!project) {
     return (
@@ -307,6 +196,17 @@ This project focuses on the front-end user experience and interface design aspec
                   <FaGithub />
                   View on GitHub
                 </a>
+                {project.liveUrl && (
+                  <a 
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-red-700 text-white px-8 py-4 rounded-full font-medium hover:bg-red-800 transition-all duration-300 justify-center"
+                  >
+                    <FaExternalLinkAlt />
+                    Live Demo
+                  </a>
+                )}
                 {project.figmaUrl && (
                   <a 
                     href={project.figmaUrl}

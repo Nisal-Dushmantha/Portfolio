@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase, FaJs, FaPython, FaHtml5, FaCss3, FaMobile, FaLaptop, FaBars, FaTimes, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
 import PageTransition from './PageTransition';
+import { projectsData } from '../data/projectsData';
 
 const AllProjects = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,40 +14,7 @@ const AllProjects = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 
-  // Expanded projects data
-  const allProjects = [
-
-    {
-      id: 1,
-      title: "Motor Bikes and Spare parts Management System",
-      description: "Full-stack Motor Bikes and Spare parts Management System with user authentication, product, inventory, services and repairs and finance management features.",
-      tech: ["MERN", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
-      image: "/assets/images/rathnasiri-motors-dashboard.png",
-      github: "https://github.com/Nisal-Dushmantha/Rathnasiri_Motors.git",
-      category: "web-development",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "BrewMe - UI/UX Design Project",
-      description: "A mobile application designed to streamline the coffee ordering process for customers and baristas.",
-      tech: ["Figma", "UI/UX Design"],
-      image: "/assets/images/brewme-screenshot.png",
-      github: "https://github.com/Nisal-Dushmantha/BrewMeFigma.git",
-      category: "ui-ux",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Brew Now - Android UI/UX Design",
-      description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
-      tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
-      image: "/assets/images/brew-now-android-studio.png",
-      github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git",
-      category: "android",
-      featured: false
-    }
-  ];
+  const allProjects = projectsData;
 
   const categories = [
     { key: 'all', label: 'All Projects' },
