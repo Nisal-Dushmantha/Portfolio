@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaGithub, FaArrowLeft, FaBars, FaTimes, FaSpinner, FaCheckCircle, FaExclamationCircle, FaReact, FaNodeJs, FaHtml5, FaCss3, FaJs, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
-import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
+import { FaGithub, FaArrowLeft, FaBars, FaTimes, FaSpinner, FaCheckCircle, FaExclamationCircle, FaExternalLinkAlt } from 'react-icons/fa';
+import { SiFigma } from 'react-icons/si';
 import { useContactForm } from '../hooks/useContactForm';
 import { getProjectById } from '../data/projectsData';
+import { getTechIcon } from '../lib/techIcons';
 import PageTransition from './PageTransition';
 
 const ProjectDetail = () => {
@@ -13,36 +14,8 @@ const ProjectDetail = () => {
 
   // Load page at top position when component mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }, []);
-
-  const getTechIcon = (tech) => {
-    switch (tech.toLowerCase()) {
-      case 'react': return <FaReact className="text-blue-500" />;
-      case 'node.js': return <FaNodeJs className="text-green-500" />;
-      case 'mongodb': return <SiMongodb className="text-green-600" />;
-      case 'express': return <SiExpress className="text-gray-600" />;
-      case 'tailwind css': return <SiTailwindcss className="text-cyan-500" />;
-      case 'firebase': return <SiFirebase className="text-orange-500" />;
-      case 'vite': return <SiVite className="text-purple-500" />;
-      case 'python': return <SiPython className="text-blue-600" />;
-      case 'javascript': return <SiJavascript className="text-yellow-500" />;
-      case 'typescript': return <SiTypescript className="text-blue-600" />;
-      case 'html5': return <FaHtml5 className="text-orange-600" />;
-      case 'css3': return <FaCss3 className="text-blue-600" />;
-      case 'mern': return <FaReact className="text-blue-500" />;
-      case 'figma': return <SiFigma className="text-purple-600" />;
-      case 'ui/ux design': return <FaPaintBrush className="text-pink-500" />;
-      case 'ui/ux': return <FaPaintBrush className="text-pink-500" />;
-      case 'android': return <SiAndroid className="text-green-500" />;
-      case 'android studio': return <SiAndroid className="text-green-600" />;
-      case 'kotlin': return <SiKotlin className="text-purple-700" />;
-      case 'google maps api': return <FaGoogle className="text-blue-600" />;
-      case 'material design': return <SiMaterialdesign className="text-blue-500" />;
-      case 'xml layouts': return <FaAndroid className="text-green-700" />;
-      default: return <FaJs className="text-yellow-500" />;
-    }
-  };
 
   const project = getProjectById(id);
 
@@ -82,77 +55,118 @@ const ProjectDetail = () => {
         </Link>
       </div>
 
-      {/* Navigation */}
-      <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
-          <Link 
-            to="/"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
-          >
-            Home
-          </Link>
-          <Link 
-            to="/projects"
-            className="text-red-700 transition-colors font-medium text-sm"
-          >
-            Projects
-          </Link>
-          <Link 
-            to="/#contact"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
-          >
-            Contact
-          </Link>
-          <Link 
-            to="/profile"
-            className="text-white bg-red-700 px-4 py-2 rounded-full font-medium text-sm"
-          >
-            About
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="absolute top-16 right-0 w-48 bg-white rounded-2xl shadow-xl border border-gray-200 py-4 md:hidden">
+        {/* Navigation */}
+        <nav className="fixed top-8 right-8 z-50">
+          <div className="hidden md:flex items-center space-x-6 bg-white/90 backdrop-blur-xl px-7 py-3 rounded-full border border-gray-200/80 shadow-xl">
             <Link 
               to="/"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Home
             </Link>
             <Link 
+              to="/#skills"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+            >
+              Stack
+            </Link>
+            <Link 
               to="/projects"
-              className="block px-6 py-2 text-red-700 hover:bg-gray-50 transition-colors font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Projects
             </Link>
             <Link 
+              to="/#experience"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+            >
+              Experience
+            </Link>
+            <Link 
+              to="/#education"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+            >
+              Education
+            </Link>
+            <Link 
               to="/#contact"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Contact
             </Link>
             <Link 
               to="/profile"
-              className="block px-6 py-2 text-white bg-red-700 mx-4 mt-2 rounded-full text-center font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-white bg-red-700 px-4 py-2 rounded-full font-semibold text-xs uppercase tracking-wider shadow-md shadow-red-700/20"
             >
               About
             </Link>
           </div>
-        )}
-      </nav>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-3 bg-white/95 rounded-2xl shadow-lg border border-gray-200 text-gray-950"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-16 right-0 bg-white/95 backdrop-blur-xl rounded-3xl border border-gray-200 shadow-2xl p-5 min-w-[220px]">
+              <div className="space-y-3">
+                <Link 
+                  to="/"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  to="/#skills"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Stack & Skills
+                </Link>
+                <Link 
+                  to="/projects"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Featured Projects
+                </Link>
+                <Link 
+                  to="/#experience"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Work Experience
+                </Link>
+                <Link 
+                  to="/#education"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Educational Qualifications
+                </Link>
+                <Link 
+                  to="/#contact"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+                <Link 
+                  to="/profile"
+                  className="block text-white bg-red-700 px-4 py-2.5 rounded-2xl font-semibold text-center text-xs uppercase tracking-wider"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About Nisal
+                </Link>
+              </div>
+            </div>
+          )}
+        </nav>
 
       {/* Header Section */}
       <section className="pt-32 pb-16 px-6">

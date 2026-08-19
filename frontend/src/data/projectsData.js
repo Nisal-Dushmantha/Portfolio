@@ -82,34 +82,25 @@ The project followed a comprehensive design thinking approach, starting with use
   },
   {
     id: 4,
-    title: "Brew Now - Android UI/UX Design",
-    description: "Android mobile application UI/UX design prototype created with Android Studio and Kotlin, focusing on coffee ordering user experience.",
-    detailedDescription: `Brew Now is an Android mobile application UI/UX design project that showcases modern mobile interface design for a coffee ordering platform. Created using Android Studio and Kotlin, this project demonstrates front-end mobile development skills and user interface design principles without backend implementation.
+    title: "Brew Now - Android Coffee Ordering App",
+    description: "Native Android mobile application developed with Android Studio and Kotlin, featuring Material Design UI, coffee catalog, customization, cart, and intuitive navigation.",
+    detailedDescription: `Brew Now is a native Android mobile application designed and developed for a seamless coffee ordering experience. Built with Android Studio and Kotlin, this application demonstrates front-end mobile engineering, Material Design principles, and smooth user interactions.
 
-Design Objectives:
-• Create an intuitive and modern Android coffee ordering interface
-• Implement Material Design principles for consistent user experience
-• Develop responsive layouts for various Android screen sizes
-• Showcase advanced Android UI components and navigation patterns
-• Demonstrate proficiency in Android Studio and Kotlin development
-
-UI Features Designed:
-• Welcome and Onboarding screens with smooth transitions
-• User registration and login interface mockups
-• Coffee menu browsing with grid and list view options
-• Product detail screens with customization options
-• Shopping cart and checkout interface designs
-• User profile and settings screens
-• Order history and favorites interface
-• Modern navigation drawer and bottom navigation
-• Search functionality with filter options
-• Responsive design for tablets and phones`,
+Key Features:
+• Welcome and Onboarding experience with smooth transitions
+• User authentication & profile management screens
+• Interactive coffee menu browsing with category filters
+• Item customization (roast type, milk preference, sweetness levels)
+• Shopping cart and checkout flow interface
+• Order tracking and service history
+• Modern navigation drawer and Material bottom navigation
+• Responsive layouts optimized across various Android screen sizes`,
     tech: ["Android Studio", "Kotlin", "Material Design", "XML Layouts", "UI/UX Design"],
     image: "/assets/images/brew-now-android-studio.png",
     videoUrl: "/assets/videos/brew-now-demo.mp4",
     github: "https://github.com/Nisal-Dushmantha/BrewNow-AS.git",
     category: "android",
-    featured: false
+    featured: true
   },
   {
     id: 5,

@@ -1,349 +1,446 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase, FaJs, FaPython, FaHtml5, FaCss3, FaMobile, FaLaptop, FaBars, FaTimes, FaPaintBrush, FaAndroid, FaGoogle } from 'react-icons/fa';
-import { SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiVite, SiPython, SiJavascript, SiTypescript, SiFigma, SiKotlin, SiAndroid, SiMaterialdesign } from 'react-icons/si';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  FaGithub, FaBars, FaTimes, FaSearch, FaThLarge, FaList, 
+  FaFilter, FaTimesCircle, FaArrowRight, FaCode, FaLaptopCode
+} from 'react-icons/fa';
 import PageTransition from './PageTransition';
 import { projectsData } from '../data/projectsData';
+import ProjectCard from './ProjectCard';
+import ProjectQuickModal from './ProjectQuickModal';
 
 const AllProjects = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
+  const [quickModalProject, setQuickModalProject] = useState(null);
+  const [isQuickModalOpen, setIsQuickModalOpen] = useState(false);
 
   // Load page at top position when component mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }, []);
-
-  const allProjects = projectsData;
 
   const categories = [
     { key: 'all', label: 'All Projects' },
     { key: 'web-development', label: 'Web Development' },
-    { key: 'ui-ux', label: 'UI/UX' },
-    { key: 'android', label: 'Android' }
+    { key: 'ui-ux', label: 'UI/UX Design' },
+    { key: 'android', label: 'Android Apps' }
   ];
 
-  const getTechIcon = (tech) => {
-    switch (tech.toLowerCase()) {
-      case 'react': return <FaReact className="text-blue-500" />;
-      case 'node.js': return <FaNodeJs className="text-green-500" />;
-      case 'mongodb': return <SiMongodb className="text-green-600" />;
-      case 'express': return <SiExpress className="text-gray-600" />;
-      case 'tailwind css': return <SiTailwindcss className="text-cyan-500" />;
-      case 'firebase': return <SiFirebase className="text-orange-500" />;
-      case 'vite': return <SiVite className="text-purple-500" />;
-      case 'python': return <SiPython className="text-blue-600" />;
-      case 'javascript': return <SiJavascript className="text-yellow-500" />;
-      case 'typescript': return <SiTypescript className="text-blue-600" />;
-      case 'html5': return <FaHtml5 className="text-orange-600" />;
-      case 'css3': return <FaCss3 className="text-blue-600" />;
-      case 'figma': return <SiFigma className="text-purple-600" />;
-      case 'ui/ux design': return <FaPaintBrush className="text-pink-500" />;
-      case 'ui/ux': return <FaPaintBrush className="text-pink-500" />;
-      case 'android': return <SiAndroid className="text-green-500" />;
-      case 'android studio': return <SiAndroid className="text-green-600" />;
-      case 'kotlin': return <SiKotlin className="text-purple-700" />;
-      case 'google maps api': return <FaGoogle className="text-blue-600" />;
-      case 'material design': return <SiMaterialdesign className="text-blue-500" />;
-      case 'xml layouts': return <FaAndroid className="text-green-700" />;
-      default: return <FaJs className="text-yellow-500" />;
-    }
+  const handleOpenQuickModal = (project) => {
+    setQuickModalProject(project);
+    setIsQuickModalOpen(true);
   };
 
-  const filteredProjects = activeFilter === 'all' 
-    ? allProjects 
-    : allProjects.filter(project => project.category === activeFilter);
+  const handleCloseQuickModal = () => {
+    setIsQuickModalOpen(false);
+  };
+
+  // Filter and search logic
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      const matchesCategory = activeFilter === 'all' || project.category === activeFilter;
+      
+      if (!searchQuery.trim()) return matchesCategory;
+
+      const query = searchQuery.toLowerCase().trim();
+      const matchesTitle = project.title.toLowerCase().includes(query);
+      const matchesDesc = project.description.toLowerCase().includes(query);
+      const matchesTech = project.tech.some(t => t.toLowerCase().includes(query));
+      const matchesCategoryName = project.category?.toLowerCase().includes(query);
+
+      return matchesCategory && (matchesTitle || matchesDesc || matchesTech || matchesCategoryName);
+    });
+  }, [activeFilter, searchQuery]);
+
+  const clearFilters = () => {
+    setActiveFilter('all');
+    setSearchQuery('');
+  };
 
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-      {/* Floating Logo */}
-      <div className="fixed top-8 left-8 z-50">
-        <Link to="/" className="block">
-          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-200">
-            <img 
-              src="/assets/images/nd-logo.png" 
-              alt="ND Logo" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </Link>
-      </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-8 right-8 z-50">
-        <div className="hidden md:flex items-center space-x-8 bg-white/90 backdrop-blur-lg px-6 py-3 rounded-full border border-gray-200 shadow-lg">
-          <Link 
-            to="/"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
-          >
-            Home
-          </Link>
-          <button 
-            className="text-red-700 transition-colors font-medium text-sm"
-          >
-            Projects
-          </button>
-          <Link 
-            to="/#contact"
-            className="text-gray-600 hover:text-gray-900 transition-colors font-medium text-sm"
-          >
-            Contact
-          </Link>
-          <Link 
-            to="/profile"
-            className="text-white bg-red-700 px-4 py-2 rounded-full font-medium text-sm"
-          >
-            About
+        {/* Floating Logo */}
+        <div className="fixed top-8 left-8 z-50">
+          <Link to="/" className="block">
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer overflow-hidden border border-gray-200">
+              <img 
+                src="/assets/images/nd-logo.png" 
+                alt="ND Logo" 
+                className="w-full h-full object-cover"
+              />
+            </div>
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden p-3 bg-white rounded-full shadow-lg border border-gray-200"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="absolute top-16 right-0 w-48 bg-white rounded-2xl shadow-xl border border-gray-200 py-4 md:hidden">
+        {/* Navigation */}
+        <nav className="fixed top-8 right-8 z-50">
+          <div className="hidden md:flex items-center space-x-6 bg-white/90 backdrop-blur-xl px-7 py-3 rounded-full border border-gray-200/80 shadow-xl">
             <Link 
               to="/"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Home
             </Link>
-            <button 
-              className="block w-full text-left px-6 py-2 text-red-700 hover:bg-gray-50 transition-colors font-medium text-sm"
+            <Link 
+              to="/#skills"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
+              Stack
+            </Link>
+            <span className="text-white bg-red-700 px-4 py-2 rounded-full font-semibold text-xs uppercase tracking-wider shadow-md shadow-red-700/20">
               Projects
-            </button>
+            </span>
+            <Link 
+              to="/#experience"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+            >
+              Experience
+            </Link>
+            <Link 
+              to="/#education"
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
+            >
+              Education
+            </Link>
             <Link 
               to="/#contact"
-              className="block px-6 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Contact
             </Link>
             <Link 
               to="/profile"
-              className="block px-6 py-2 text-white bg-red-700 mx-4 mt-2 rounded-full text-center font-medium text-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 hover:text-gray-950 font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               About
             </Link>
           </div>
-        )}
-      </nav>
 
-      {/* Header Section */}
-      <section className="pt-32 pb-16 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            All Projects
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explore my complete collection of projects, from frontend applications to full-stack solutions. 
-            Each project represents a unique challenge and learning opportunity.
-          </p>
-        </div>
-      </section>
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-3 bg-white/95 rounded-2xl shadow-lg border border-gray-200 text-gray-950"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
 
-      {/* Filter Section */}
-      <section className="px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category.key}
-                onClick={() => setActiveFilter(category.key)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeFilter === category.key
-                    ? 'bg-gray-900 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-16 right-0 bg-white/95 backdrop-blur-xl rounded-3xl border border-gray-200 shadow-2xl p-5 min-w-[220px]">
+              <div className="space-y-3">
+                <Link 
+                  to="/"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  to="/#skills"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Stack & Skills
+                </Link>
+                <span className="block text-white bg-red-700 px-4 py-2.5 rounded-2xl font-semibold text-center text-xs uppercase tracking-wider">
+                  Featured Projects
+                </span>
+                <Link 
+                  to="/#experience"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Work Experience
+                </Link>
+                <Link 
+                  to="/#education"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Educational Qualifications
+                </Link>
+                <Link 
+                  to="/#contact"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+                <Link 
+                  to="/profile"
+                  className="block text-gray-700 font-semibold py-2 text-sm hover:text-red-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About Nisal
+                </Link>
+              </div>
+            </div>
+          )}
+        </nav>
+
+        {/* Hero Header Section */}
+        <section className="pt-36 pb-12 px-6 bg-gradient-to-b from-gray-50 via-white to-white">
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
+              PORTFOLIO ARCHIVE
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-gray-950 tracking-tight mb-4">
+              Explore All Projects
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A comprehensive showcase of full-stack web platforms, interactive UI/UX prototypes, and Android applications.
+            </p>
           </div>
+        </section>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <div 
-                key={project.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-200 flex flex-col"
-              >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  {project.featured && (
-                    <div className="absolute top-4 left-4 bg-red-700 text-white px-3 py-1 rounded-full text-xs font-medium">
-                      Featured
-                    </div>
-                  )}
+        {/* Filter, Search & View Controls Bar */}
+        <section className="px-6 pb-8">
+          <div className="max-w-6xl mx-auto space-y-6">
+            {/* Search and View Mode Switcher */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-gray-50/80 p-3 md:p-4 rounded-3xl border border-gray-200">
+              {/* Search Box */}
+              <div className="relative flex-grow max-w-lg">
+                <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by keyword, technology (e.g. React, Kotlin, MongoDB)..."
+                  className="w-full pl-11 pr-10 py-3 bg-white rounded-2xl border border-gray-200 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-sm text-gray-900 placeholder-gray-400 transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-700"
+                  >
+                    <FaTimesCircle className="text-base" />
+                  </button>
+                )}
+              </div>
+
+              {/* View Switcher & Result Count */}
+              <div className="flex items-center justify-between md:justify-end gap-4">
+                <span className="text-xs font-semibold text-gray-500">
+                  {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} found
+                </span>
+
+                {/* View Mode Switcher */}
+                <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-gray-200 shadow-sm">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-2.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all ${
+                      viewMode === 'grid'
+                        ? 'bg-gray-900 text-white shadow-sm'
+                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                    title="Grid View"
+                  >
+                    <FaThLarge className="text-sm" />
+                    <span className="hidden sm:inline">Grid</span>
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-2.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all ${
+                      viewMode === 'list'
+                        ? 'bg-gray-900 text-white shadow-sm'
+                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                    title="List View"
+                  >
+                    <FaList className="text-sm" />
+                    <span className="hidden sm:inline">List</span>
+                  </button>
                 </div>
-                
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, index) => (
-                      <div key={index} className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full text-xs">
-                        {getTechIcon(tech)}
-                        <span>{tech}</span>
-                      </div>
-                    ))}
+              </div>
+            </div>
+
+            {/* Category Filter Tabs */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              {categories.map((category) => {
+                const count = category.key === 'all'
+                  ? projectsData.length
+                  : projectsData.filter(p => p.category === category.key).length;
+
+                return (
+                  <button
+                    key={category.key}
+                    onClick={() => setActiveFilter(category.key)}
+                    className={`px-4 py-2.5 rounded-2xl text-xs font-semibold transition-all duration-200 flex items-center gap-2 ${
+                      activeFilter === category.key
+                        ? 'bg-gray-950 text-white shadow-md'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    }`}
+                  >
+                    <span>{category.label}</span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                      activeFilter === category.key
+                        ? 'bg-white/20 text-white'
+                        : 'bg-gray-200 text-gray-600'
+                    }`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Display Section */}
+        <section className="px-6 pb-24">
+          <div className="max-w-6xl mx-auto">
+            {/* Grid or List Layout */}
+            {filteredProjects.length > 0 ? (
+              <motion.div
+                layout
+                className={
+                  viewMode === 'grid'
+                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+                    : 'flex flex-col gap-6'
+                }
+              >
+                <AnimatePresence mode="popLayout">
+                  {filteredProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      onQuickView={handleOpenQuickModal}
+                      viewMode={viewMode}
+                    />
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            ) : (
+              /* Empty State */
+              <div className="text-center py-20 bg-gray-50 rounded-3xl border border-gray-200/80 p-8">
+                <div className="w-16 h-16 bg-gray-200 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                  <FaFilter />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">No Matching Projects</h3>
+                <p className="text-gray-600 max-w-md mx-auto mb-6 text-sm">
+                  We couldn't find any projects matching "{searchQuery}". Try searching with different keywords or reset your filters.
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="px-6 py-2.5 bg-gray-900 text-white text-xs font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Quick View Modal */}
+        <ProjectQuickModal
+          project={quickModalProject}
+          isOpen={isQuickModalOpen}
+          onClose={handleCloseQuickModal}
+        />
+
+        {/* CTA Section */}
+        <section className="py-20 bg-gray-900 text-white relative overflow-hidden">
+          <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+              Have a Custom Project in Mind?
+            </h2>
+            <p className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+              I'm open for freelance opportunities, full-stack collaborations, and software engineering roles.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                to="/#contact"
+                className="bg-red-700 text-white px-8 py-3.5 rounded-full hover:bg-red-800 transition-all font-medium text-sm shadow-lg shadow-red-700/30"
+              >
+                Let's Build Something
+              </Link>
+              <Link 
+                to="/profile"
+                className="border border-gray-600 text-white hover:bg-white/10 px-8 py-3.5 rounded-full transition-all font-medium text-sm"
+              >
+                View Full Background
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-gray-950 text-gray-400 py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Brand Column */}
+              <div className="md:col-span-1">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                    <img 
+                      src="/assets/images/nd-logo.png" 
+                      alt="ND Logo" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  
-                  <div className="flex gap-3 mt-auto">
-                    <Link 
-                      to={`/project/${project.id}`}
-                      className="flex-1 bg-gray-900 text-white text-center py-3 rounded-xl hover:bg-gray-800 transition-colors font-medium text-sm flex items-center justify-center gap-2"
-                    >
-                      Read More
-                    </Link>
+                  <span className="text-lg font-bold text-white">Nisal Dushmantha</span>
+                </div>
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  Full-stack developer crafting digital experiences with modern technologies and creative solutions.
+                </p>
+              </div>
+
+              {/* Quick Links */}
+              <div>
+                <h4 className="font-semibold mb-4 text-white text-sm">Quick Links</h4>
+                <ul className="space-y-2 text-xs">
+                  <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                  <li><Link to="/profile" className="hover:text-white transition-colors">About</Link></li>
+                  <li><Link to="/#projects" className="hover:text-white transition-colors">Featured Projects</Link></li>
+                  <li><Link to="/#contact" className="hover:text-white transition-colors">Contact</Link></li>
+                </ul>
+              </div>
+
+              {/* Services */}
+              <div>
+                <h4 className="font-semibold mb-4 text-white text-sm">Expertise</h4>
+                <ul className="space-y-2 text-xs">
+                  <li>Web Development (MERN)</li>
+                  <li>UI/UX Prototyping (Figma)</li>
+                  <li>Android Studio & Kotlin</li>
+                  <li>REST APIs & Database Design</li>
+                </ul>
+              </div>
+
+              {/* Contact Info */}
+              <div>
+                <h4 className="font-semibold mb-4 text-white text-sm">Get In Touch</h4>
+                <div className="space-y-2 text-xs">
+                  <p>lawanyanisal@gmail.com</p>
+                  <p>Kaduwela, Sri Lanka</p>
+                  <div className="flex gap-3 mt-4">
                     <a 
-                      href={project.github}
-                      target="_blank"
+                      href="https://github.com/Nisal-Dushmantha" 
+                      target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-3 rounded-xl hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium text-sm"
+                      className="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center transition-colors"
                     >
-                      <FaGithub />
-                      Code
+                      <FaGithub size={16} />
                     </a>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* No Projects Message */}
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-500 text-lg">No projects found in this category.</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Interested in Working Together?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            I'm always excited to take on new challenges and create innovative solutions. 
-            Let's discuss your next project!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/#contact"
-              className="bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 font-medium"
-            >
-              Get In Touch
-            </Link>
-            <Link 
-              to="/profile"
-              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-gray-900 hover:text-gray-900 transition-all duration-300 font-medium"
-            >
-              Learn More About Me
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative bg-gray-100 text-gray-900 py-20 overflow-hidden">
-        {/* Wave Background */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="absolute bottom-0 w-full h-32" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120 Z" fill="currentColor"/>
-          </svg>
-        </div>
-        
-        <div className="relative max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Brand Column */}
-            <div className="md:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/assets/images/nd-logo.png" 
-                    alt="ND Logo" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className="text-xl font-bold">Nisal Dushmantha</span>
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Full-stack developer crafting digital experiences with modern technologies and creative solutions.
-              </p>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-600 text-sm">
-                <li><Link to="/" className="hover:text-gray-900 transition-colors">Home</Link></li>
-                <li><Link to="/profile" className="hover:text-gray-900 transition-colors">About</Link></li>
-                <li><button className="hover:text-gray-900 transition-colors">Projects</button></li>
-                <li><Link to="/#contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="font-semibold mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-600 text-sm">
-                <li className="hover:text-gray-900 transition-colors">Web Development</li>
-                <li className="hover:text-gray-900 transition-colors">Mobile Apps</li>
-                <li className="hover:text-gray-900 transition-colors">UI/UX Design</li>
-                <li className="hover:text-gray-900 transition-colors">Consulting</li>
-              </ul>
-            </div>
-
-            {/* Contact Info */}
-            <div>
-              <h4 className="font-semibold mb-4">Get In Touch</h4>
-              <div className="space-y-2 text-gray-600 text-sm">
-                <p>lawanyanisal@gmail.com</p>
-                <div className="flex gap-4 mt-4">
-                  <a href="https://github.com/Nisal-Dushmantha" className="hover:text-gray-900 transition-colors">
-                    <FaGithub size={18} />
-                  </a>
-                </div>
-              </div>
+            <div className="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
+              <p>&copy; 2024 Nisal Dushmantha. All rights reserved.</p>
             </div>
           </div>
-
-          <div className="border-t border-gray-300 mt-12 pt-8 text-center text-gray-600 text-sm">
-            <p>&copy; 2024 Nisal Dushmantha. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
     </PageTransition>
   );
 };
 
 export default AllProjects;
-
-
-
-
-
-
