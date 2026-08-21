@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaCheckCircle } from 'react-icons/fa';
+import { FaBuilding, FaMapMarkerAlt, FaCalendarAlt, FaCheckCircle, FaBriefcase } from 'react-icons/fa';
 
 const experiences = [
   {
@@ -12,6 +12,7 @@ const experiences = [
     location: 'Colombo, Sri Lanka',
     type: 'Internship',
     current: true,
+    logo: '/assets/images/slsi-logo.png',
     description: 'Contributing to enterprise software systems, internal digital platforms, and IT infrastructure operations at the national standards body of Sri Lanka.',
     responsibilities: [
       'Engaging in software engineering and application modernization for enterprise operations.',
@@ -35,14 +36,24 @@ const WorkExperience = () => {
           transition={{ duration: 0.5 }}
           className="relative bg-white dark:bg-gray-900/90 rounded-3xl p-8 sm:p-10 border border-gray-200/90 dark:border-gray-800 hover:border-red-400/80 dark:hover:border-red-500/60 shadow-lg hover:shadow-2xl transition-all duration-300 group"
         >
-          {/* Top Banner with Badges */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/80 flex items-center justify-center text-2xl text-emerald-600 dark:text-emerald-400 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform">
-                <FaBriefcase />
+          {/* Top Banner with Badges & SLSI Logo */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-white p-1.5 border border-gray-200 dark:border-gray-700 shadow-md flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+                {exp.logo ? (
+                  <img 
+                    src={exp.logo} 
+                    alt={`${exp.company} Logo`} 
+                    className="w-full h-full object-contain filter drop-shadow-sm" 
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-2xl text-emerald-600 dark:text-emerald-400">
+                    <FaBriefcase />
+                  </div>
+                )}
               </div>
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wider mb-1 border border-transparent dark:border-emerald-900/50">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wider mb-1.5 border border-transparent dark:border-emerald-900/50">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   Active Internship
                 </span>
