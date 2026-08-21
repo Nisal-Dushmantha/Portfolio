@@ -67,8 +67,8 @@ const SkillsMatrix = () => {
             onClick={() => setActiveCategory(cat.id)}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
               activeCategory === cat.id
-                ? 'bg-gray-950 text-white shadow-lg shadow-gray-950/20 scale-105'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                ? 'bg-gray-950 dark:bg-red-700 text-white shadow-lg shadow-gray-950/20 dark:shadow-red-700/20 scale-105'
+                : 'bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border border-transparent dark:border-gray-700/60'
             }`}
           >
             <span>{cat.icon}</span>
@@ -91,17 +91,17 @@ const SkillsMatrix = () => {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25, delay: index * 0.04 }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="p-5 rounded-3xl bg-white border border-gray-200/90 hover:border-red-400/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              className="p-5 rounded-3xl bg-white dark:bg-gray-900/90 border border-gray-200/90 dark:border-gray-800 hover:border-red-400/80 dark:hover:border-red-500/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div className="flex items-start gap-3.5 mb-3">
-                <div className="p-2.5 rounded-2xl bg-gray-50 border border-gray-100 group-hover:bg-red-50 text-2xl transform group-hover:scale-110 transition-all flex-shrink-0">
+                <div className="p-2.5 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 group-hover:bg-red-50 dark:group-hover:bg-red-950/50 text-2xl transform group-hover:scale-110 transition-all flex-shrink-0">
                   {getTechIcon(skill.name)}
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 group-hover:text-red-700 transition-colors text-base">
+                  <h4 className="font-bold text-gray-900 dark:text-white group-hover:text-red-700 dark:group-hover:text-red-400 transition-colors text-base">
                     {skill.name}
                   </h4>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
                     {skill.desc}
                   </p>
                 </div>

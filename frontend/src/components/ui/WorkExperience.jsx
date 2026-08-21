@@ -26,69 +26,69 @@ const experiences = [
 const WorkExperience = () => {
   return (
     <div className="max-w-4xl mx-auto">
-      {experiences.map((exp, index) => (
+      {experiences.map((exp) => (
         <motion.div
           key={exp.id}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
-          className="relative bg-white rounded-3xl p-8 sm:p-10 border border-gray-200/90 hover:border-red-400/80 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+          className="relative bg-white dark:bg-gray-900/90 rounded-3xl p-8 sm:p-10 border border-gray-200/90 dark:border-gray-800 hover:border-red-400/80 dark:hover:border-red-500/60 shadow-lg hover:shadow-2xl transition-all duration-300 group"
         >
           {/* Top Banner with Badges */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-gray-100">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-2xl text-emerald-600 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/80 flex items-center justify-center text-2xl text-emerald-600 dark:text-emerald-400 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform">
                 <FaBriefcase />
               </div>
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider mb-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wider mb-1 border border-transparent dark:border-emerald-900/50">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   Active Internship
                 </span>
-                <h3 className="text-xl sm:text-2xl font-black text-gray-950">
+                <h3 className="text-xl sm:text-2xl font-black text-gray-950 dark:text-white">
                   {exp.role}
                 </h3>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-2xl border border-gray-200 text-xs font-bold text-gray-700">
-              <FaCalendarAlt className="text-red-600" />
+            <div className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800/90 px-4 py-2 rounded-2xl border border-gray-200 dark:border-gray-700 text-xs font-bold text-gray-700 dark:text-gray-300">
+              <FaCalendarAlt className="text-red-600 dark:text-red-400" />
               <span>{exp.period}</span>
             </div>
           </div>
 
           {/* Company & Department Details */}
           <div className="space-y-4 mb-6">
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm font-semibold text-gray-600">
-              <div className="flex items-center gap-2 text-gray-900 font-bold">
-                <FaBuilding className="text-red-600" />
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm font-semibold text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-2 text-gray-900 dark:text-white font-bold">
+                <FaBuilding className="text-red-600 dark:text-red-400" />
                 <span>{exp.company}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-500 font-medium">
+              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 font-medium">
                 <FaMapMarkerAlt className="text-red-500" />
                 <span>{exp.location}</span>
               </div>
-              <div className="text-xs bg-red-50 text-red-700 px-3 py-1 rounded-xl font-bold">
+              <div className="text-xs bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 px-3 py-1 rounded-xl font-bold border border-transparent dark:border-red-900/50">
                 {exp.department}
               </div>
             </div>
 
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
               {exp.description}
             </p>
           </div>
 
           {/* Key Responsibilities */}
           <div className="space-y-3 mb-8">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
               Key Responsibilities & Scope
             </h4>
             <div className="grid sm:grid-cols-2 gap-3">
               {exp.responsibilities.map((resp, i) => (
-                <div key={i} className="flex items-start gap-2.5 bg-gray-50/80 p-3.5 rounded-2xl border border-gray-100">
-                  <FaCheckCircle className="text-emerald-500 text-sm mt-0.5 flex-shrink-0" />
-                  <span className="text-xs text-gray-700 leading-relaxed font-medium">
+                <div key={i} className="flex items-start gap-2.5 bg-gray-50/80 dark:bg-gray-800/60 p-3.5 rounded-2xl border border-gray-100 dark:border-gray-700/60">
+                  <FaCheckCircle className="text-emerald-500 dark:text-emerald-400 text-sm mt-0.5 flex-shrink-0" />
+                  <span className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
                     {resp}
                   </span>
                 </div>
@@ -98,14 +98,14 @@ const WorkExperience = () => {
 
           {/* Tech Stack Chips */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">
               Domains & Competencies
             </h4>
             <div className="flex flex-wrap gap-2">
               {exp.techStack.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-red-50 text-gray-800 hover:text-red-700 text-xs font-semibold transition-colors border border-gray-200/80"
+                  className="px-3 py-1.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 hover:text-red-700 dark:hover:text-red-400 text-xs font-semibold transition-colors border border-gray-200/80 dark:border-gray-700/60"
                 >
                   {tech}
                 </span>

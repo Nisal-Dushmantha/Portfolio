@@ -38,13 +38,13 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
   const getCategoryBadge = (category) => {
     switch (category) {
       case 'web-development':
-        return { label: 'Web Dev', bg: 'bg-blue-50 text-blue-700 border-blue-200' };
+        return { label: 'Web Dev', bg: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/80' };
       case 'ui-ux':
-        return { label: 'UI/UX Design', bg: 'bg-purple-50 text-purple-700 border-purple-200' };
+        return { label: 'UI/UX Design', bg: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800/80' };
       case 'android':
-        return { label: 'Android App', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
+        return { label: 'Android App', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/80' };
       default:
-        return { label: 'Project', bg: 'bg-gray-100 text-gray-700 border-gray-200' };
+        return { label: 'Project', bg: 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700' };
     }
   };
 
@@ -63,7 +63,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="group relative bg-white rounded-2xl border border-gray-200/90 hover:border-red-400/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-center p-4 md:p-6 gap-6"
+        className="group relative bg-white dark:bg-gray-900/90 rounded-2xl border border-gray-200/90 dark:border-gray-800 hover:border-red-400/80 dark:hover:border-red-500/60 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-center p-4 md:p-6 gap-6"
       >
         {/* Spotlight Effect */}
         <div
@@ -115,29 +115,29 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
               </span>
             </div>
             <Link to={`/project/${project.id}`} className="block group/title">
-              <h3 className="text-xl font-bold text-gray-900 group-hover/title:text-red-700 transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover/title:text-red-700 dark:group-hover/title:text-red-400 transition-colors">
                 {project.title}
               </h3>
             </Link>
-            <p className="text-gray-600 text-sm mt-1 line-clamp-2 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 line-clamp-2 leading-relaxed">
               {project.description}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-100">
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
             {/* Tech chips */}
             <div className="flex flex-wrap items-center gap-1.5">
               {project.tech.slice(0, 4).map((tech, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-lg font-medium"
+                  className="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-transparent dark:border-gray-700/60 text-xs px-2.5 py-1 rounded-lg font-medium"
                 >
                   {getTechIcon(tech)}
                   <span>{tech}</span>
                 </span>
               ))}
               {project.tech.length > 4 && (
-                <span className="text-xs text-gray-400 font-medium pl-1">
+                <span className="text-xs text-gray-400 dark:text-gray-500 font-medium pl-1">
                   +{project.tech.length - 4} more
                 </span>
               )}
@@ -147,7 +147,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => onQuickView(project)}
-                className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
                 title="Quick View"
               >
                 <FaEye className="text-sm" />
@@ -158,7 +158,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl border border-gray-200 hover:border-gray-900 text-gray-700 hover:text-gray-900 transition-colors"
+                  className="p-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                   title="Source Code"
                 >
                   <FaGithub className="text-sm" />
@@ -169,7 +169,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-700 hover:text-white transition-colors"
+                  className="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-400 hover:bg-red-700 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-colors border border-red-200/60 dark:border-red-900/60"
                   title="Live Demo"
                 >
                   <FaExternalLinkAlt className="text-xs" />
@@ -177,7 +177,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
               )}
               <Link
                 to={`/project/${project.id}`}
-                className="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 dark:bg-red-700 dark:hover:bg-red-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
               >
                 Case Study <FaArrowRight className="text-[10px]" />
               </Link>
@@ -201,13 +201,13 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative bg-white rounded-3xl border border-gray-200/90 hover:border-red-400/70 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full"
+      className="group relative bg-white dark:bg-gray-900/90 rounded-3xl border border-gray-200/90 dark:border-gray-800 hover:border-red-400/70 dark:hover:border-red-500/60 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full"
     >
       {/* Spotlight Effect */}
       <div
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
         style={{
-          background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(239, 68, 68, 0.07), transparent 75%)`,
+          background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(239, 68, 68, 0.1), transparent 75%)`,
         }}
       />
 
@@ -247,7 +247,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
         </div>
 
         {/* Quick Action Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
           <button
             onClick={() => onQuickView(project)}
             className="px-3.5 py-2 bg-white/95 hover:bg-white text-gray-900 rounded-xl text-xs font-semibold shadow-lg backdrop-blur-sm flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
@@ -284,7 +284,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-900 hover:bg-black text-white rounded-xl text-xs shadow-md transition-colors"
+                className="p-2 bg-gray-900 hover:bg-black text-white rounded-xl text-xs shadow-md transition-colors border border-gray-700"
                 title="GitHub Repo"
               >
                 <FaGithub />
@@ -302,14 +302,14 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
       </div>
 
       {/* Content Section */}
-      <div className="p-6 flex flex-col flex-grow z-10 bg-white">
+      <div className="p-6 flex flex-col flex-grow z-10 bg-white dark:bg-gray-900">
         <Link to={`/project/${project.id}`} className="block group/title">
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover/title:text-red-700 transition-colors line-clamp-1">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover/title:text-red-700 dark:group-hover/title:text-red-400 transition-colors line-clamp-1">
             {project.title}
           </h3>
         </Link>
 
-        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2 flex-grow">
+        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 flex-grow">
           {project.description}
         </p>
 
@@ -318,24 +318,24 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
           {project.tech.slice(0, 4).map((tech, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-1.5 bg-gray-50 border border-gray-200/70 text-gray-700 text-[11px] font-medium rounded-lg px-2.5 py-1"
+              className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200/70 dark:border-gray-700/60 text-gray-700 dark:text-gray-300 text-[11px] font-medium rounded-lg px-2.5 py-1"
             >
               {getTechIcon(tech)}
               <span>{tech}</span>
             </div>
           ))}
           {project.tech.length > 4 && (
-            <span className="text-[11px] text-gray-400 font-medium self-center px-1">
+            <span className="text-[11px] text-gray-400 dark:text-gray-500 font-medium self-center px-1">
               +{project.tech.length - 4}
             </span>
           )}
         </div>
 
         {/* Card Footer Actions */}
-        <div className="flex items-center gap-2 pt-4 border-t border-gray-100 mt-auto">
+        <div className="flex items-center gap-2 pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
           <Link
             to={`/project/${project.id}`}
-            className="flex-1 bg-gray-900 hover:bg-gray-800 text-white text-center py-2.5 rounded-xl transition-all font-medium text-xs flex items-center justify-center gap-1.5 shadow-sm group/btn"
+            className="flex-1 bg-gray-900 hover:bg-gray-800 dark:bg-red-700 dark:hover:bg-red-800 text-white text-center py-2.5 rounded-xl transition-all font-medium text-xs flex items-center justify-center gap-1.5 shadow-sm group/btn"
           >
             <span>Case Study</span>
             <FaArrowRight className="text-[10px] group-hover/btn:translate-x-1 transition-transform" />
@@ -346,7 +346,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 border border-gray-200 hover:border-gray-900 text-gray-700 hover:text-gray-900 rounded-xl transition-colors"
+              className="p-2.5 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-xl transition-colors"
               title="GitHub Code"
             >
               <FaGithub className="text-sm" />
@@ -355,7 +355,7 @@ const ProjectCard = ({ project, onQuickView, viewMode = 'grid' }) => {
           
           <button
             onClick={() => onQuickView(project)}
-            className="p-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors"
+            className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl transition-colors"
             title="Quick View"
           >
             <FaEye className="text-sm" />
