@@ -57,7 +57,7 @@ export const useContactForm = () => {
     // 1. Primary Attempt: EmailJS
     try {
       const serviceId = 'service_04t4cm1';
-      const templateId = 'template_3ozw3ui';
+      const templateId = 'template_2bnp0ek';
       const publicKey = 'AlcxgNUbxdv0C4oGu';
 
       const templateParams = {
